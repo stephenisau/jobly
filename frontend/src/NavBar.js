@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 class NavBar extends Component {
   render() {
     const navLinks =
-      localStorage.getItem('username') ?
+      localStorage.getItem('_token') ?
         <div>
           <NavLink exact to='/companies'>Companies</NavLink>
           <NavLink exact to='/jobs'>Jobs</NavLink>
