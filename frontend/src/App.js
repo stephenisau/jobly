@@ -12,14 +12,21 @@ class App extends Component {
       currentUser: {}
     }
     this.removeUser = this.removeUser.bind(this);
+    this.addUser = this.addUser.bind(this);
   }
+
   async componentDidMount() {
     if (localStorage.getItem('_token')) {
       let currentUser = await JoblyApi.getUser(localStorage.getItem('_token'))
-      this.setState({ currentUser});
-      console.log(this.state);
+      this.setState({ currentUser });
     }
   }
+
+  addUser(user) {
+    this.setState({ currentUser: user })
+    console.log("adduser: ", this.state);
+  }
+
   removeUser() {
     this.setState({ currentUser: {} })
   }
@@ -30,7 +37,9 @@ class App extends Component {
       <div className="container-fluid">
         <BrowserRouter>
           <NavBar currentUser={this.state.currentUser} />
-          <Routes currentUser={this.state.currentUser} removeUser={this.removeUser}/>
+          <Routes currentUser={this.state.currentUser} 
+                  removeUser={this.removeUser} 
+                  addUser={this.addUser}/>
         </BrowserRouter>
       </div>
     );

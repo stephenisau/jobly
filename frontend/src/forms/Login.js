@@ -3,6 +3,7 @@ import JoblyApi from '../JoblyApi';
 import "./Login.css";
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
+import jwt from 'jsonwebtoken';
 
 class Login extends Component {
   constructor(props) {
@@ -16,25 +17,32 @@ class Login extends Component {
     this.registerChange = this.registerChange.bind(this)
   }
 
-  async handleSignIn(evt) {
-    let response = await JoblyApi.login(evt);
+  async handleSignIn(data) {
+    let response = await JoblyApi.login(data);
+    let user = jwt.decode(response.token);
+
+    this.props.addUser(user);
 
     localStorage.setItem('_token', response.token);
-    this.props.history.push('/')
+    this.props.history.push('/');
   }
 
-  async handleRegister(evt) {
-    let response = await JoblyApi.register(evt);
+  async handleRegister(data) {
+    let response = await JoblyApi.register(data);
+    let user = jwt.decode(response.token);
+
+    this.props.addUser(user);
+
     localStorage.setItem('_token', response.token);
-    this.props.history.push('/')
+    this.props.history.push('/');
   }
 
   signUpChange() {
-    this.setState({ signOrReg: true })
+    this.setState({ signOrReg: true });
   }
 
   registerChange() {
-    this.setState({ signOrReg: false })
+    this.setState({ signOrReg: false });
   }
 
 
