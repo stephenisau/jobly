@@ -20,15 +20,12 @@ class JobDisplay extends Component {
   }
   async componentDidMount() {
     let response = {};
-    response["_token"] = localStorage.getItem('_token');
-    // get request
     let jobs = await JoblyApi.getJobs(response);
     this.setState({ jobs });
   }
 
   async search(query) {
     let response = {};
-    response["_token"] = localStorage.getItem('_token');
     response["search"] = query;
     let jobs = await JoblyApi.getJobs(response);
     this.setState({ jobs });

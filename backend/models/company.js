@@ -42,6 +42,7 @@ class Company {
     // Finalize query and return results
 
     let finalQuery = baseQuery + whereExpressions.join(" AND ") + " ORDER BY name";
+    console.log(finalQuery)
     const companiesRes = await db.query(finalQuery, queryValues);
     return companiesRes.rows;
   }

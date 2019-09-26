@@ -25,7 +25,6 @@ class CompanyDisplay extends Component {
 
   async componentDidMount() {
     let response = {};
-    response["_token"] = localStorage.getItem('_token');
     // get request
     let companies = await JoblyApi.getCompanies(response);
     this.setState({ companies });
@@ -33,7 +32,6 @@ class CompanyDisplay extends Component {
 
   async search(query) {
     let response = {};
-    response["_token"] = localStorage.getItem('_token');
     response["search"] = query;
     let companies = await JoblyApi.getCompanies(response);
     this.setState({ companies });
