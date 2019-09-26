@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       currentUser: {}
     }
+    this.removeUser = this.removeUser.bind(this);
   }
   async componentDidMount() {
     if (localStorage.getItem('_token')) {
@@ -19,7 +20,9 @@ class App extends Component {
       console.log(this.state);
     }
   }
-
+  removeUser() {
+    this.setState({ currentUser: {} })
+  }
 
 
   render() {
@@ -27,7 +30,7 @@ class App extends Component {
       <div className="container-fluid">
         <BrowserRouter>
           <NavBar currentUser={this.state.currentUser} />
-          <Routes currentUser={this.state.currentUser} />
+          <Routes currentUser={this.state.currentUser} removeUser={this.removeUser}/>
         </BrowserRouter>
       </div>
     );

@@ -24,6 +24,7 @@ class Routes extends Component {
           <Route exact path='/logout'
             render={() => {
               localStorage.clear();
+              this.props.removeUser();
               return <Redirect to='/' />
               }} />
         <Route exact path='/'

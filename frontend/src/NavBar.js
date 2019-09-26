@@ -4,7 +4,7 @@ import './NavBar.css';
 class NavBar extends Component {
   render() {
     const navLinks =
-      this.props.currentUser ?
+      this.props.currentUser.username !== undefined ?
         <div>
           <NavLink exact to='/companies'>Companies</NavLink>
           <NavLink exact to='/jobs'>Jobs</NavLink>
