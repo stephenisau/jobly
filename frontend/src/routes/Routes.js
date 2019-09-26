@@ -20,15 +20,14 @@ class Routes extends Component {
         <Route exact path='/profile'
           render={() => <Profile />}/>
         <Route exact path='/login'
-          render={rtProps => <Login {...rtProps} toggleLog={this.props.toggleLog}/>} />
+          render={rtProps => <Login {...rtProps}/>} />
           <Route exact path='/logout'
             render={() => {
               localStorage.clear();
-              this.props.toggleLog()
               return <Redirect to='/' />
               }} />
         <Route exact path='/'
-          render={() => <Base logStatus={this.props.logStatus}/>}/>
+          render={() => <Base currentUser={this.props.currentUser}/>}/>
         <Redirect to='/' />
       </Switch>
     );
