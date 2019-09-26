@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 class JobCard extends Component {
   render() {
-    console.log(this.props)
     return (
     <div className="Card card mt-3">
       <div className="card-body">

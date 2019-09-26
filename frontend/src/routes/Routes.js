@@ -21,8 +21,14 @@ class Routes extends Component {
           render={() => <JobDisplay />}/>
         <Route exact path='/profile'
           render={() => <Profile />}/>
+          <Route exact path='/logout'
+            render={() => {
+              localStorage.clear();
+              console.log("cleared!")
+              return <Redirect to='/' />
+              }} />
         <Route exact path='/'
-          render={() => <Base />}/>
+          render={() => <Base logStatus={this.props.logStatus}/>}/>
         <Redirect to='/' />
       </Switch>
     );

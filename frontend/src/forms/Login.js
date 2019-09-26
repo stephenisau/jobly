@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
 import "./Login.css";
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class Login extends Component {
     evt.preventDefault()
     let response = await JoblyApi.login(this.state);
     localStorage.setItem('_token', response.token);
+    return <Redirect exact path to='/jobs' />
   }
 
 
