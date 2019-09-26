@@ -1,61 +1,48 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
 import "./Login.css";
-import { Redirect } from 'react-router-dom';
+import LoginForm from './LoginForm'
+import RegisterForm from './RegisterForm'
 
 class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: "",
-      password: ""
+      signOrReg: true
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(evt) {
-    this.setState({ 
-      [evt.target.name]: evt.target.value 
-    })
+    this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
+    this.signUpChange = this.signUpChange.bind(this)
+    this.registerChange = this.registerChange.bind(this)
   }
 
-  async handleSubmit(evt) {
-    evt.preventDefault()
-    let response = await JoblyApi.login(this.state);
+  async handleSignIn(evt) {
+    let response = await JoblyApi.login(evt);
     localStorage.setItem('_token', response.token);
-    return <Redirect exact path to='/jobs' />
+    this.props.toggleLog();
+    this.props.history.push('/')
+  }
+  async handleRegister(evt) {
+    let response = await JoblyApi.register(evt);
+    localStorage.setItem('_token', response.token);
+    this.props.toggleLog();
+    this.props.history.push('/')
+  }
+  signUpChange() {
+    this.setState({ signOrReg: true })
+  }
+  registerChange() {
+    this.setState({ signOrReg: false })
   }
 
 
   render() {
+    let form = this.state.signOrReg ? <LoginForm signIn={this.handleSignIn} /> : <RegisterForm register={this.handleRegister} />
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-7">
-            <div className="card-container">
-              <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                  <label>Username</label>
-                  <input name="username" 
-                        value={this.state.username} 
-                        placeholder="Username" 
-                        onChange={this.handleChange} 
-                        className="form-control" />
-                </div>
-                <div className="form-group">
-                  <label>Password</label>
-                  <input type="password" 
-                        name="password" 
-                        value={this.state.password} 
-                        placeholder="Password" 
-                        onChange={this.handleChange} 
-                        className="form-control"/>
-                </div>
-                <button className="btn">Submit</button>
-              </form>
-            </div>
-          </div>
-        </div>
+      <div>
+        <button className="btn btn-primary" onClick={this.signUpChange}>Sign In</button>
+        <button className="btn btn-primary" onClick={this.registerChange}>Register</button>
+        { form }
       </div>
     );
   }

@@ -4,7 +4,7 @@ import './NavBar.css';
 class NavBar extends Component {
   render() {
     const navLinks =
-      localStorage.getItem('_token') ?
+      this.props.logStatus ?
         <div>
           <NavLink exact to='/companies'>Companies</NavLink>
           <NavLink exact to='/jobs'>Jobs</NavLink>

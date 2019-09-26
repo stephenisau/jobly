@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <BrowserRouter>
-          <NavBar logStatus={this.state.loggedIn} toggleLog={this.toggleLog}/>
+          <NavBar logStatus={this.state.loggedIn} />
           <Routes logStatus={this.state.loggedIn} toggleLog={this.toggleLog}/>
         </BrowserRouter>
       </div>

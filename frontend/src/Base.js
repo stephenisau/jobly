@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 
 class Base extends Component {
   render() {
-    let message = this.props.logStatus ? <div> Welcome back!</div> : <button className="btn btn-primary"><Link to='/login'/> Log in</button>
+    let message = this.props.logStatus ? <div> Welcome back!</div> : <form action="/login"><button className="btn btn-primary">Login</button></form>
 
     return (
     <div>Base

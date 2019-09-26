@@ -16,7 +16,7 @@ class Routes extends Component {
         <Route exact path='/companies'
           render={() => <CompanyDisplay />}/>
         <Route exact path='/login'
-          render={() => <Login />} />
+          render={rtProps => <Login {...rtProps} toggleLog={this.props.toggleLog}/>} />
         <Route exact path='/jobs'
           render={() => <JobDisplay />}/>
         <Route exact path='/profile'
@@ -24,7 +24,7 @@ class Routes extends Component {
           <Route exact path='/logout'
             render={() => {
               localStorage.clear();
-              console.log("cleared!")
+              this.props.toggleLog()
               return <Redirect to='/' />
               }} />
         <Route exact path='/'
