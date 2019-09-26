@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
+import JobCard from '../jobs/JobCard'
 import JobList from '../jobs/JobList';
 
 class CompanyProfile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      company: {}
+      jobs: [],
+      loading: false
     }
   }
   async componentDidMount() {
@@ -14,28 +16,22 @@ class CompanyProfile extends Component {
     response["_token"] = localStorage.getItem('_token');
     response["handle"] = this.props.match.params.handle;
     let company = await JoblyApi.getCompany(response);
-    // console.log(company)
-    this.setState({ company });
-    // console.log(this.state.company.jobs);
-    // debugger;
+    this.setState(st => ({
+      jobs: [...st.jobs, ...company.jobs]
+    }));
   }
   render() {
-    console.log(this.state.company.length)
-    console.log(this.state.company.jobs);
-    let companyData = this.state.company.length > 0 ?
-      <div className="container">
-        <h3>{this.state.company.name}</h3>
-        <p>{this.state.company.description}</p>
-        <JobList jobs={this.state.company.jobs} />
-      </div> :
-      <div>No jobs</div>
+    const companyData = this.state.jobs.map(job => {
+      return <JobCard job={job}/>
+    })
     return (
       <div>
-        { companyData }
+        {/* <pre>{JSON.stringify(this.state.jobs, null, 4)}</pre> */}
+        {companyData}
       </div>
       
     );
   }
 }
 
-export default CompanyProfile;
+export default CompanyProfile

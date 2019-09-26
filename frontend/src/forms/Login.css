@@ -1,3 +1,6 @@
 .card-container {
-    background-color: blue;
+    background-color: #A4D3B7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

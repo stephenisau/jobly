@@ -13,16 +13,15 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(evt) {
-    this.setState(
-      { [evt.target.name]: evt.target.value }
-    )
+    this.setState({ 
+      [evt.target.name]: evt.target.value 
+    })
   }
 
   async handleSubmit(evt) {
     evt.preventDefault()
     let response = await JoblyApi.login(this.state);
     localStorage.setItem('_token', response.token);
-    console.log("stuff ", localStorage);
   }
 
 
@@ -30,7 +29,7 @@ class Login extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div className="col-md-7">
             <div className="card-container">
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
