@@ -12,7 +12,7 @@ class Routes extends Component {
     return (
       <Switch>
         <Route exact path='/companies/:handle'
-          render={() => <CompanyProfile />}/>
+          render={rtProps => <CompanyProfile {...rtProps} />} />
         <Route exact path='/companies'
           render={() => <CompanyDisplay />}/>
         <Route exact path='/login'

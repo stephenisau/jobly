@@ -1,0 +1,10 @@
+.unlink {
+        color: black;
+        text-decoration: none;
+}
+
+.unlink:hover{
+    color: inherit;
+    text-decoration: none;
+    box-shadow: 10px 10px darkblue;
+}
