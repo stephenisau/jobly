@@ -9,9 +9,9 @@ class PrivateRoute extends Component {
   }
 
 
-  logout() {
+  async logout() {
     localStorage.clear();
-    this.props.removeUser();
+    await this.props.removeUser();
   };
 
 

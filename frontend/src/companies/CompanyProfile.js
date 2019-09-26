@@ -21,7 +21,7 @@ class CompanyProfile extends Component {
       company: { ...company },
       loading: false
     }));
-
+    debugger;
   }
   render() {
     console.log(this.state);

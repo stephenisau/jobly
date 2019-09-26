@@ -22,9 +22,15 @@ class App extends Component {
     }
   }
 
+  // async componentDidUpdate(prevState) {
+  //   if (this.state.currentUser !== prevState.currentUser) {
+  //     console.log('broken');
+  //     // this.setState({ currentUser: this.state.currentUser })
+  //   }
+  // }
   addUser(user) {
     this.setState({ currentUser: user })
-    console.log("adduser: ", this.state);
+    // console.log("adduser: ", this.state);
   }
 
   removeUser() {
@@ -33,13 +39,14 @@ class App extends Component {
 
 
   render() {
+    console.log(this.state);
     return (
       <div className="container-fluid">
         <BrowserRouter>
           <NavBar currentUser={this.state.currentUser} />
-          <Routes currentUser={this.state.currentUser} 
-                  removeUser={this.removeUser} 
-                  addUser={this.addUser}/>
+          <Routes currentUser={this.state.currentUser}
+            removeUser={this.removeUser}
+            addUser={this.addUser} />
         </BrowserRouter>
       </div>
     );

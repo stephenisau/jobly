@@ -16,13 +16,14 @@ class Routes extends Component {
           render={rtProps => <Login {...rtProps} addUser={this.props.addUser} />} />
         <PrivateRoute exact path='/logout' 
                       logout={true} 
-                      removeUser={this.props.removeUser}/>
-        <PrivateRoute path='/companies' 
                       currentUser={this.props.currentUser}
-                      component={routeProps => <CompanyDisplay {...routeProps} currentUser={this.props.currentUser}/>}/>}/>
+                      removeUser={this.props.removeUser}/>
         <PrivateRoute path='/companies/:handle'
                       currentUser={this.props.currentUser}
                       component={routeProps => <CompanyProfile {...routeProps} currentUser={this.props.currentUser}/>}/>}/>
+        <PrivateRoute path='/companies' 
+                      currentUser={this.props.currentUser}
+                      component={routeProps => <CompanyDisplay {...routeProps} currentUser={this.props.currentUser}/>}/>}/>
         <PrivateRoute path='/jobs'
                       currentUser={this.props.currentUser}
                       component={routeProps => <JobDisplay {...routeProps} currentUser={this.props.currentUser}/>}/>
