@@ -11,16 +11,16 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/companies/:handle'
-          render={rtProps => <CompanyProfile {...rtProps} />} />
         <Route exact path='/companies'
           render={() => <CompanyDisplay />}/>
-        <Route exact path='/login'
-          render={rtProps => <Login {...rtProps} toggleLog={this.props.toggleLog}/>} />
+        <Route exact path='/companies/:handle'
+          render={rtProps => <CompanyProfile {...rtProps} />} />
         <Route exact path='/jobs'
           render={() => <JobDisplay />}/>
         <Route exact path='/profile'
           render={() => <Profile />}/>
+        <Route exact path='/login'
+          render={rtProps => <Login {...rtProps} toggleLog={this.props.toggleLog}/>} />
           <Route exact path='/logout'
             render={() => {
               localStorage.clear();
