@@ -37,7 +37,7 @@ class JobDisplay extends Component {
       <div className="container">
         <pre>JobDisplay</pre>
         <Search search={this.search}/>
-        <JobList jobs={this.state.jobs}/>
+        <JobList jobs={this.state.jobs} jobsApplied={this.props.jobsApplied} />
       </div>
     );
   }

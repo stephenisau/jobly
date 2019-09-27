@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect, Route } from 'react-router-dom';
+import CurrentUserContext from '../CurrentUserContext';
 
 class PrivateRoute extends Component {
 
@@ -11,18 +12,25 @@ class PrivateRoute extends Component {
 
   async logout() {
     localStorage.clear();
-    await this.props.removeUser();
+    await this.context.removeUser();
   };
 
 
 
   render() {
+    const { currentUser } = this.context;
+    const { exact, path, render } = this.props;
     if (this.props.logout) {
       this.logout();
     }
-    const privateRoute = this.props.currentUser.username === undefined ? 
-    <Redirect to='/' /> :
-    <Route render={this.props.component} />
+    const privateRoute = currentUser.username === undefined ?
+      <Redirect to='/' /> :
+      <Route
+        exact={exact}
+        path={path}
+        render={render}
+        currentUser={currentUser}
+      />
     return (
       <div>
         {privateRoute}
@@ -30,5 +38,7 @@ class PrivateRoute extends Component {
     );
   }
 }
+
+PrivateRoute.contextType = CurrentUserContext;
 
 export default PrivateRoute;

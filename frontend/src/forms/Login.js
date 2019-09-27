@@ -4,6 +4,7 @@ import "./Login.css";
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import jwt from 'jsonwebtoken';
+import CurrentUserContext from '../CurrentUserContext';
 
 class Login extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Login extends Component {
     let response = await JoblyApi.login(data);
     let user = jwt.decode(response.token);
 
-    this.props.addUser(user);
+    this.context.addUser(user);
 
     localStorage.setItem('_token', response.token);
     this.props.history.push('/');
@@ -31,7 +32,7 @@ class Login extends Component {
     let response = await JoblyApi.register(data);
     let user = jwt.decode(response.token);
 
-    this.props.addUser(user);
+    this.context.addUser(user);
 
     localStorage.setItem('_token', response.token);
     this.props.history.push('/');
@@ -60,5 +61,7 @@ class Login extends Component {
     );
   }
 }
+
+Login.contextType = CurrentUserContext;
 
 export default Login;

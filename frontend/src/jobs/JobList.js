@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import JobCard from './JobCard';
+import JoblyApi from '../JoblyApi';
 
 class JobList extends Component {
+
+
   render() {
-    const jobList = this.props.jobs.map(job => {
-      return <JobCard job={job} />
+    const { jobs, currentUser }  = this.props;
+    const jobList = jobs.map(job => {
+      return <JobCard key={job.id} job={job} currentUser={currentUser}/>
     })
     return (
     <div>

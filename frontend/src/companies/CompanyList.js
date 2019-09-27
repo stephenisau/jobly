@@ -11,7 +11,7 @@ class CompanyList extends Component {
       return <Link 
               key={company.handle}
               className='unlink' 
-              exact to={`companies/${company.handle}`}>
+              to={`companies/${company.handle}`}>
                 <CompanyCard company={company} key={company.handle}/>
               </Link>
     });

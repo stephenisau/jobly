@@ -1,17 +1,22 @@
 import React, { Component } from "react";
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
+import CurrentUserContext from "./CurrentUserContext";
+
 class NavBar extends Component {
   render() {
     const navLinks =
-      this.props.currentUser.username !== undefined ?
+      this.context.currentUser.username !== undefined ?
         <div>
           <NavLink exact to='/companies'>Companies</NavLink>
           <NavLink exact to='/jobs'>Jobs</NavLink>
           <NavLink exact to='/profile'>Profile</NavLink>
           <NavLink exact to='/logout'>Logout</NavLink>
-        </div> :
-        <div><NavLink exact to='/login'>Login</NavLink></div>
+        </div>
+        :
+        <div>
+          <NavLink exact to='/login'>Login</NavLink>
+        </div>
 
     return (
       <div>
@@ -23,5 +28,7 @@ class NavBar extends Component {
     );
   }
 }
+
+NavBar.contextType = CurrentUserContext
 
 export default NavBar;

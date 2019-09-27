@@ -61,5 +61,18 @@ class JoblyApi {
     let res = await this.request(`users/${token.username}`);
     return res;
   }
+
+  static async updateUser(data) {
+    let username = data._username;
+    delete data._username
+    delete data._submitted;
+    let res = await this.request(`users/${username}`, data, 'patch');
+    return res
+  }
+
+  static async addJob(data) {
+    
+  }
+
 }
 export default JoblyApi;

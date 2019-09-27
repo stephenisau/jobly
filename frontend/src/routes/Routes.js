@@ -14,23 +14,33 @@ class Routes extends Component {
       <Switch>
         <Route exact path='/login'
           render={rtProps => <Login {...rtProps} addUser={this.props.addUser} />} />
-        <PrivateRoute exact path='/logout' 
-                      logout={true} 
-                      currentUser={this.props.currentUser}
-                      removeUser={this.props.removeUser}/>
-        <PrivateRoute path='/companies/:handle'
-                      currentUser={this.props.currentUser}
-                      component={routeProps => <CompanyProfile {...routeProps} currentUser={this.props.currentUser}/>}/>}/>
-        <PrivateRoute path='/companies' 
-                      currentUser={this.props.currentUser}
-                      component={routeProps => <CompanyDisplay {...routeProps} currentUser={this.props.currentUser}/>}/>}/>
-        <PrivateRoute path='/jobs'
-                      currentUser={this.props.currentUser}
-                      component={routeProps => <JobDisplay {...routeProps} currentUser={this.props.currentUser}/>}/>
-        <PrivateRoute path='/profile'
-                      currentUser={this.props.currentUser}
-                      component={routeProps => <Profile {...routeProps} currentUser={this.props.currentUser}/>}/>}/>
-        <PrivateRoute currentUser={this.props.currentUser} />
+        <PrivateRoute exact path='/logout'
+          logout={true}
+          currentUser={this.props.currentUser}
+          removeUser={this.props.removeUser} />
+        <PrivateRoute 
+          exact
+          path='/companies/:handle'
+          currentUser={this.props.currentUser}
+          render={() => <CompanyProfile currentUser={this.props.currentUser} />} /> 
+          
+        <PrivateRoute 
+          exact 
+          path='/companies'
+          currentUser={this.props.currentUser}
+          render={routeProps => <CompanyDisplay {...routeProps} />} />
+        <PrivateRoute 
+          exact 
+          path='/jobs'
+          currentUser={this.props.currentUser}
+          render={routeProps => <JobDisplay {...routeProps} 
+                                  currentUser={this.props.currentUser}/>} />
+        <PrivateRoute 
+          exact 
+          path='/profile'
+          currentUser={this.props.currentUser}
+          render={routeProps => <Profile {...routeProps} 
+                                  currentUser={this.props.currentUser} />} />
         <Route exact path='/'
           render={() => <Base currentUser={this.props.currentUser} />} />
         <Redirect to='/' />

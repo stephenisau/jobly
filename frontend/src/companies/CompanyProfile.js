@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
 import JobCard from '../jobs/JobCard'
+import JobList from '../jobs/JobList';
+import { withRouter } from 'react-router-dom';
+
 // import JobList from '../jobs/JobList';
 
 class CompanyProfile extends Component {
@@ -12,29 +15,24 @@ class CompanyProfile extends Component {
     }
   }
   async componentDidMount() {
-    let response = {};
-    response["_token"] = localStorage.getItem('_token');
-    response["handle"] = this.props.match.params.handle;
-    let company = await JoblyApi.getCompany(response);
+    let handle = this.props.match.params;
+    let company = await JoblyApi.getCompany(handle);
     this.setState(st => ({
       jobs: [...st.jobs, ...company.jobs],
       company: { ...company },
       loading: false
     }));
-    debugger;
   }
+
   render() {
-    console.log(this.state);
-    const companyData = this.state.jobs.map(job => {
-      return <JobCard job={job} />
-    });
+    const { currentUser } = this.props;
 
     let companyProfile = this.state.loading === true ?
       <div>Loading</div> :
       <div className='container'>
         <h2>{this.state.company.name}</h2>
         <p>{this.state.company.description}</p>
-        {companyData}
+        <JobList jobs={this.state.jobs} currentUser={currentUser}/>
       </div>
 
     return (
@@ -46,4 +44,4 @@ class CompanyProfile extends Component {
   }
 }
 
-export default CompanyProfile
+export default withRouter(CompanyProfile);
