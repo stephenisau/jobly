@@ -53,7 +53,10 @@ class JoblyApi {
 
   static async register(data) {
     let res = await this.request('users', data, 'post');
-    return res;
+    if (res) {
+      return res;
+    } 
+    console.error("User cannot be registered!");
   }
 
   static async getUser(data) {

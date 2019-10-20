@@ -29,6 +29,7 @@ class Login extends Component {
   }
 
   async handleRegister(data) {
+    debugger;
     let response = await JoblyApi.register(data);
     let user = jwt.decode(response.token);
 
@@ -53,10 +54,14 @@ class Login extends Component {
       : <RegisterForm register={this.handleRegister} />
 
     return (
-      <div>
-        <button className="btn btn-primary" onClick={this.signUpChange}>Sign In</button>
-        <button className="btn btn-primary" onClick={this.registerChange}>Register</button>
-        {form}
+      <div className="container">
+        <div className="mt-4 mb-1">
+          <button className={this.state.signOrReg ? "btn btn-primary mr-1 active" : "btn btn-primary mr-1"} onClick={this.signUpChange}>Sign In</button>
+          <button className={this.state.signOrReg ? "btn btn-primary ml-1" : "btn btn-primary ml-1 active"} onClick={this.registerChange}>Register</button>
+        </div>
+        <div className="card">
+          {form}
+        </div>
       </div>
     );
   }

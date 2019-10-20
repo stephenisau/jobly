@@ -11,8 +11,8 @@ class LoginForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(evt) {
-    this.setState({ 
-      [evt.target.name]: evt.target.value 
+    this.setState({
+      [evt.target.name]: evt.target.value
     })
   }
 
@@ -22,22 +22,24 @@ class LoginForm extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>Username</label>
-        <input name="username" 
-              value={this.state.username} 
-              placeholder="Username" 
-              onChange={this.handleChange} 
-              className="form-control" />
-        <label>Password</label>
-        <input type="password" 
-              name="password" 
-              value={this.state.password} 
-              placeholder="Password" 
-              onChange={this.handleChange} 
-              className="form-control"/>
-      <button className="btn btn-primary">Submit</button>
-    </form>
+      <div className="card-body">
+        <form onSubmit={this.handleSubmit}>
+          <label>Username</label>
+          <input name="username"
+            value={this.state.username}
+            placeholder="Username"
+            onChange={this.handleChange}
+            className="form-control" />
+          <label>Password</label>
+          <input type="password"
+            name="password"
+            value={this.state.password}
+            placeholder="Password"
+            onChange={this.handleChange}
+            className="form-control" />
+          <button className="btn btn-primary">Submit</button>
+        </form>
+      </div>
     );
   }
 }

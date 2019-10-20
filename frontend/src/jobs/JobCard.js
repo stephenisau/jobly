@@ -16,9 +16,7 @@ class JobCard extends Component {
   }
 
   render() {
-    // debugger;
     const { currentUser, job } = this.props;
-    console.log(currentUser);
     const button = currentUser === undefined ? 
         <button className="btn btn-danger">Apply</button> :
         this.buttonSwitcher();

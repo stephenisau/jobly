@@ -8,20 +8,22 @@ class NavBar extends Component {
     const navLinks =
       this.context.currentUser.username !== undefined ?
         <div>
-          <NavLink exact to='/companies'>Companies</NavLink>
-          <NavLink exact to='/jobs'>Jobs</NavLink>
-          <NavLink exact to='/profile'>Profile</NavLink>
-          <NavLink exact to='/logout'>Logout</NavLink>
+          <nav className="navbar">
+            <NavLink className="nav-link" exact to='/companies'>Companies</NavLink>
+            <NavLink className="nav-link" exact to='/jobs'>Jobs</NavLink>
+            <NavLink className="nav-link" exact to='/profile'>Profile</NavLink>
+            <NavLink className="nav-link" exact to='/logout'>Logout</NavLink>
+          </nav>
         </div>
         :
         <div>
-          <NavLink exact to='/login'>Login</NavLink>
+          <NavLink className="nav-link" exact to='/login'>Login</NavLink>
         </div>
 
     return (
       <div>
         <nav className="navbar">
-          <NavLink exact to='/'>Jobly</NavLink>
+          <NavLink className="navbar-brand" exact to='/'>Jobly</NavLink>
           {navLinks}
         </nav>
       </div>

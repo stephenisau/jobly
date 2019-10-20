@@ -6,15 +6,15 @@ class JobList extends Component {
 
 
   render() {
-    const { jobs, currentUser }  = this.props;
+    const { jobs, currentUser } = this.props;
     const jobList = jobs.map(job => {
-      return <JobCard key={job.id} job={job} currentUser={currentUser}/>
+      return <JobCard key={job.id} job={job} currentUser={currentUser} />
     })
     return (
-    <div>
-      JobList
+      <div>
+        JobList
       {jobList}
-    </div>
+      </div>
     );
   }
 }
