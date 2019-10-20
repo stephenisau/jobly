@@ -25,12 +25,7 @@ class PrivateRoute extends Component {
     }
     const privateRoute = currentUser.username === undefined ?
       <Redirect to='/' /> :
-      <Route
-        exact={exact}
-        path={path}
-        render={render}
-        currentUser={currentUser}
-      />
+      <Route exact={exact} path={path} render={render} currentUser={currentUser} />
     return (
       <div>
         {privateRoute}

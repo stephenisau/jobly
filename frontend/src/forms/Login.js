@@ -29,7 +29,6 @@ class Login extends Component {
   }
 
   async handleRegister(data) {
-    debugger;
     let response = await JoblyApi.register(data);
     let user = jwt.decode(response.token);
 
