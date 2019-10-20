@@ -41,6 +41,21 @@ We also displayed multiple forms in one component. This is the code that accompl
       <LoginForm signIn={this.handleSignIn} /> : <RegisterForm register={this.handleRegister} />
 ```
 
+Which was then added as a form here:
+```
+    return (
+      <div className="container">
+        <div className="mt-4 mb-1">
+          <button className={this.state.signOrReg ? "btn btn-primary mr-1 active" : "btn btn-primary mr-1"} onClick={this.signUpChange}>Sign In</button>
+          <button className={this.state.signOrReg ? "btn btn-primary ml-1" : "btn btn-primary ml-1 active"} onClick={this.registerChange}>Register</button>
+        </div>
+        <div className="card">
+          {form}
+        </div>
+      </div>
+    );
+```
+
 ## Tests
 
 No tests are written to this point. 
