@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import Routes from './routes/Routes';
 import { BrowserRouter } from 'react-router-dom';
 import JoblyApi from './JoblyApi'
-import CurrentUserContext from './CurrentUserContext';
+import UserContext from './UserContext';
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class App extends Component {
       currentUser: null,
       loaded: false
     }
-    this.removeUser = this.removeUser.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
     this.addUser = this.addUser.bind(this);
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.addJob = this.addJob.bind(this);
@@ -37,7 +37,7 @@ class App extends Component {
     this.setState({ currentUser: user })
   }
 
-  removeUser() {
+  handleLogout() {
     localStorage.removeItem("_token");
     this.setState({ currentUser: null })
   }
@@ -53,9 +53,9 @@ class App extends Component {
     console.log(this.state);
     return (
       <div className="container-fluid">
-        <CurrentUserContext.Provider value={this.state.currentUser, this.state.loaded}>
+        <UserContext.Provider value={this.state.currentUser, this.state.loaded}>
           <BrowserRouter>
-            <NavBar removeUser={this.removeUser}/>
+            <NavBar handleLogout={this.handleLogout}/>
             <Routes 
               currentUser={this.state.currentUser}
               loaded={this.state.loaded}
@@ -64,7 +64,7 @@ class App extends Component {
               removeUser={this.removeUser}
               addUser={this.addUser}/>
           </BrowserRouter>
-        </CurrentUserContext.Provider>
+        </UserContext.Provider>
       </div>
     );
   }

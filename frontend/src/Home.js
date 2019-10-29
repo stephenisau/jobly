@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import CurrentUserContext from './CurrentUserContext';
+import UserContext from './UserContext';
 
 class Home extends Component {
-  static contextType = CurrentUserContext;
+  static contextType = UserContext;
 
   render() {
     const { loaded } = this.props;

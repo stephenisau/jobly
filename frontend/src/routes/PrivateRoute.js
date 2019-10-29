@@ -1,28 +1,16 @@
 import React, { Component } from "react";
 import { Redirect, Route } from 'react-router-dom';
-import CurrentUserContext from '../CurrentUserContext';
+import UserContext from '../UserContext';
 
 class PrivateRoute extends Component {
 
   constructor(props) {
     super(props);
-    this.logout = this.logout.bind(this);
   }
-
-
-  async logout() {
-    localStorage.clear();
-    await this.props.removeUser();
-  };
-
-
 
   render() {
     const { currentUser } = this.context;
     const { exact, path, render } = this.props;
-    if (this.props.logout) {
-      this.logout();
-    }
     const privateRoute = currentUser ?
       <Redirect to='/' /> :
       <Route exact={exact} path={path} render={render} currentUser={currentUser} />
@@ -34,6 +22,6 @@ class PrivateRoute extends Component {
   }
 }
 
-PrivateRoute.contextType = CurrentUserContext;
+PrivateRoute.contextType = UserContext;
 
 export default PrivateRoute;

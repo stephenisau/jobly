@@ -4,7 +4,8 @@ import "./Login.css";
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import jwt from 'jsonwebtoken';
-import CurrentUserContext from '../CurrentUserContext';
+import UserContext from '../UserContext';
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
@@ -29,13 +30,15 @@ class Login extends Component {
   }
 
   async handleRegister(data) {
-    let response = await JoblyApi.register(data);
-    let user = jwt.decode(response.token);
-
-    this.props.addUser(user);
-
-    localStorage.setItem('_token', response.token);
-    this.props.history.push('/');
+    try {
+      let response = await JoblyApi.register(data);
+      let user = jwt.decode(response.token);
+      this.props.addUser(user);
+      localStorage.setItem('_token', response.token);
+      this.props.history.push('/');
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   signInChange() {
@@ -49,7 +52,6 @@ class Login extends Component {
 
   render() {
     console.log(this.props);
-    let form = this.state.login ? <LoginForm signIn={this.handleSignIn} /> : <RegisterForm register={this.handleRegister} />
 
     return (
       <div className="container">
@@ -58,7 +60,9 @@ class Login extends Component {
           <button className={this.state.login ? "btn btn-primary ml-1" : "btn btn-primary ml-1 active"} onClick={this.registerChange}>Register</button>
         </div>
         <div className="card">
-          {form}
+          {this.state.login ? 
+              <LoginForm signIn={this.handleSignIn} /> : 
+              <RegisterForm register={this.handleRegister} />}
         </div>
       </div>
     );

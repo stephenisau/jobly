@@ -1,57 +1,28 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
+import UserContext from './UserContext';
+import { withRouter } from "react-router";
+
+
+const ACTIVE_STYLES = {
+  fontWeight: "bold"
+}
 
 class NavBar extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.logOut = this.logOut.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
-  async logOut() {
-    await this.props.removeUser();
+  static contextType = UserContext;
+
+  async logout() {
+    await this.props.handleLogout();
     this.props.history.push('/');
   }
 
-  loggedIn() {
-    return (
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <NavLink className="nav-link" exact to='/companies'>
-            Companies
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" exact to='/jobs'>
-            Jobs
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" exact to='/profile'>
-            Profile
-            </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" exact to='/logout'>
-            Logout
-          </NavLink>
-        </li>
-      </ul>
-    )
-  }
-
-  loggedOut() {
-    return (
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <NavLink className="nav-link" exact to='/login'>
-            Login
-          </NavLink>
-        </li>
-      </ul>
-    )
-  }
 
   render() {
     console.log("NAVBAR: ", this);
@@ -59,33 +30,33 @@ class NavBar extends React.PureComponent {
     return (
       <nav className="navbar navbar-expand-md">
         <div className="d-flex flex-row">
-          <NavLink className="navbar-brand mr-4" exact to='/'>Jobly</NavLink>
+          <NavLink className="navbar-brand mr-4" activeStyle={ ACTIVE_STYLES} exact to='/'>Jobly</NavLink>
           {loggedIn ?
             (<ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <NavLink className="nav-link" exact to='/companies'>
+                <NavLink className="nav-link" activeStyle={ ACTIVE_STYLES} exact to='/companies'>
                   Companies
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link mr-4" exact to='/jobs'>
+                <NavLink className="nav-link mr-4" activeStyle={ ACTIVE_STYLES} exact to='/jobs'>
                   Jobs
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" exact to='/profile'>
+                <NavLink className="nav-link" activeStyle={ ACTIVE_STYLES} exact to='/profile'>
                   Profile
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" exact to='/logout' onClick={this.logOut}>
+                <NavLink className="nav-link" exact to='/logout' activeStyle={ ACTIVE_STYLES} onClick={this.logout}>
                   Logout
                 </NavLink>
               </li>
             </ul>) : (
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item mr-4">
-                  <NavLink className="nav-link" exact to='/login'>
+                  <NavLink className="nav-link" exact to='/login' activeStyle={ ACTIVE_STYLES}>
                     Login
                   </NavLink>
                 </li>
@@ -96,5 +67,4 @@ class NavBar extends React.PureComponent {
   }
 }
 
-
-export default NavBar;
+export default withRouter(NavBar);
