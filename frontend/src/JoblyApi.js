@@ -10,7 +10,7 @@ class JoblyApi {
     try {
       return (await axios({
         method: verb,
-        url: `http://localhost:3001/${endpoint}`,
+        url: `http://localhost:5000/${endpoint}`,
         [verb === "get" ? "params" : "data"]: paramsOrData})).data;
         // axios sends query string data via the "params" key,
         // and request body data via the "data" key,
@@ -59,22 +59,22 @@ class JoblyApi {
     console.error("User cannot be registered!");
   }
 
-  static async getUser(data) {
+  static async checkToken(data) {
     let token = jwt.decode(data);
     let res = await this.request(`users/${token.username}`);
     return res;
   }
 
-  static async updateUser(data) {
-    let username = data._username;
+  static async updateUser(username, data) {
     delete data._username
     delete data._submitted;
     let res = await this.request(`users/${username}`, data, 'patch');
     return res
   }
 
-  static async addJob(data) {
-    
+  static async applyToJob(id) {
+    let res = await this.request(`jobs/${id}/apply`, {}, "post");
+    return res.message
   }
 
 }

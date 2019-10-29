@@ -4,38 +4,33 @@ import NavBar from './NavBar';
 import Routes from './routes/Routes';
 import { BrowserRouter } from 'react-router-dom';
 import JoblyApi from './JoblyApi'
-import jwt from 'jsonwebtoken';
 import CurrentUserContext from './CurrentUserContext';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: this.checkLocalStorage()
+      currentUser: null,
+      loaded: false
     }
     this.removeUser = this.removeUser.bind(this);
     this.addUser = this.addUser.bind(this);
-    this.checkLocalStorage = this.checkLocalStorage.bind(this);
+    this.getCurrentUser = this.getCurrentUser.bind(this);
     this.addJob = this.addJob.bind(this);
   }
 
-  checkLocalStorage() {
-    // function that checks for user token in local storage
-    // If it exists, then we set the state of our app to be the username
-    if (localStorage.getItem('_token')) {
-      let token = localStorage.getItem('_token')
-      let username = jwt.decode(token);
-      return { username };
+  async getCurrentUser() {
+    const token = localStorage.getItem('_token');
+    try {
+      let currentUser = await JoblyApi.checkToken(token);
+      this.setState({ currentUser, loaded: true })
+    } catch (err) {
+      this.setState({ currentUser: null, loaded: false })
     }
-    return {};
   }
 
   async componentDidMount() {
-    // once our component mounts, we set the state to be our user object
-    if (localStorage.getItem('_token')) {
-      let { user } = await JoblyApi.getUser(localStorage.getItem('_token'))
-      this.setState({ currentUser: user });
-    }
+    await this.getCurrentUser()
   }
 
   addUser(user) {
@@ -43,25 +38,31 @@ class App extends Component {
   }
 
   removeUser() {
-    this.setState({ currentUser: {} })
+    localStorage.removeItem("_token");
+    this.setState({ currentUser: null })
   }
 
-  addJob(job) {
+  async addJob(job) {
+    await JoblyApi.applyToJob(job.id);
     this.setState(st => ({
-      currentUser: {...st.currentUser, jobs: [...st.currentUser.jobs, job]}
+      currentUser: { ...st.currentUser, jobs: [...st.currentUser.jobs, job] }
     }));
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="container-fluid">
-        <CurrentUserContext.Provider value={{ currentUser: this.state.currentUser, 
-                                              addUser: this.addUser, 
-                                              removeUser: this.removeUser,  
-                                              addJob: this.addJob }}>
+        <CurrentUserContext.Provider value={this.state.currentUser, this.state.loaded}>
           <BrowserRouter>
-            <NavBar />
-            <Routes />
+            <NavBar removeUser={this.removeUser}/>
+            <Routes 
+              currentUser={this.state.currentUser}
+              loaded={this.state.loaded}
+              getCurrentUser={this.getCurrentUser}
+              addJob={this.addJob}
+              removeUser={this.removeUser}
+              addUser={this.addUser}/>
           </BrowserRouter>
         </CurrentUserContext.Provider>
       </div>

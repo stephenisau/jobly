@@ -26,24 +26,23 @@ class Profile extends Component {
   async handleSubmit(evt) {
     evt.preventDefault();
     let userObj = this.state
-    let updatedUser = await JoblyApi.updateUser(userObj);
+    let username = this.state._username;
+    let updatedUser = await JoblyApi.updateUser(username, userObj);
     this.setState({...updatedUser, _submitted: true });
   }
 
 
   async componentDidMount() {
     let token = localStorage.getItem('_token');
-    let userObj = await JoblyApi.getUser(token);
+    let userObj = await JoblyApi.checkToken(token);
     let { username, first_name, last_name, email } = userObj.user
     this.setState({ _username: username, first_name, last_name, email });
   }
 
   render() {
     const alert = this.state._submitted ? 
-    <Alert 
-      color='success' 
-      message={`User updated successfully.`} 
-      /> : null
+    <Alert color='success' message={`User updated successfully.`} /> 
+      : null
 
     return (
       <div className="container">

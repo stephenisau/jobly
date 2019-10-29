@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
-import JobCard from '../jobs/JobCard'
 import JobList from '../jobs/JobList';
 import { withRouter } from 'react-router-dom';
 
@@ -28,7 +27,7 @@ class CompanyProfile extends Component {
     const { currentUser } = this.props;
 
     let companyProfile = this.state.loading === true ?
-      <div>Loading</div> :
+      <div>Loading...</div> :
       <div className='container'>
         <h2>{this.state.company.name}</h2>
         <p>{this.state.company.description}</p>

@@ -7,7 +7,7 @@ class JobDisplay extends Component {
 
   static defaultProps = {
     jobs: [
-      {id: 1, title: "Editor", salary: 118000, equity: 0.15, company_handle: "foster-rice"}
+      {id: 1, title: "Editor", salary: 118000, equity: 0.15, company_handle: "foster-rice", applied: false}
     ]
   }
 
@@ -31,13 +31,13 @@ class JobDisplay extends Component {
     this.setState({ jobs });
   }
 
-
   render() {
+    console.log(this.props);
     return (
       <div className="container">
-        <pre>JobDisplay</pre>
+        <pre>{JSON.stringify(this.props, null, 4)}</pre>
         <Search search={this.search}/>
-        <JobList jobs={this.state.jobs} jobsApplied={this.props.jobsApplied} />
+        <JobList jobs={this.state.jobs} addJob={this.props.addJob} />
       </div>
     );
   }

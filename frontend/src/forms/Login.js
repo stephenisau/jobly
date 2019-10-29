@@ -10,11 +10,11 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      signOrReg: true
+      login: true
     }
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
-    this.signUpChange = this.signUpChange.bind(this)
+    this.signInChange = this.signInChange.bind(this)
     this.registerChange = this.registerChange.bind(this)
   }
 
@@ -22,7 +22,7 @@ class Login extends Component {
     let response = await JoblyApi.login(data);
     let user = jwt.decode(response.token);
 
-    this.context.addUser(user);
+    this.props.addUser(user);
 
     localStorage.setItem('_token', response.token);
     this.props.history.push('/');
@@ -32,31 +32,30 @@ class Login extends Component {
     let response = await JoblyApi.register(data);
     let user = jwt.decode(response.token);
 
-    this.context.addUser(user);
+    this.props.addUser(user);
 
     localStorage.setItem('_token', response.token);
     this.props.history.push('/');
   }
 
-  signUpChange() {
-    this.setState({ signOrReg: true });
+  signInChange() {
+    this.setState({ login: true });
   }
 
   registerChange() {
-    this.setState({ signOrReg: false });
+    this.setState({ login: false });
   }
 
 
   render() {
-    let form = this.state.signOrReg ?
-      <LoginForm signIn={this.handleSignIn} />
-      : <RegisterForm register={this.handleRegister} />
+    console.log(this.props);
+    let form = this.state.login ? <LoginForm signIn={this.handleSignIn} /> : <RegisterForm register={this.handleRegister} />
 
     return (
       <div className="container">
         <div className="mt-4 mb-1">
-          <button className={this.state.signOrReg ? "btn btn-primary mr-1 active" : "btn btn-primary mr-1"} onClick={this.signUpChange}>Sign In</button>
-          <button className={this.state.signOrReg ? "btn btn-primary ml-1" : "btn btn-primary ml-1 active"} onClick={this.registerChange}>Register</button>
+          <button className={this.state.login ? "btn btn-primary mr-1 active" : "btn btn-primary mr-1"} onClick={this.signInChange}>Sign In</button>
+          <button className={this.state.login ? "btn btn-primary ml-1" : "btn btn-primary ml-1 active"} onClick={this.registerChange}>Register</button>
         </div>
         <div className="card">
           {form}
@@ -66,6 +65,5 @@ class Login extends Component {
   }
 }
 
-Login.contextType = CurrentUserContext;
 
 export default Login;

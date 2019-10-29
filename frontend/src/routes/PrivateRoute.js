@@ -12,7 +12,7 @@ class PrivateRoute extends Component {
 
   async logout() {
     localStorage.clear();
-    await this.context.removeUser();
+    await this.props.removeUser();
   };
 
 
@@ -23,7 +23,7 @@ class PrivateRoute extends Component {
     if (this.props.logout) {
       this.logout();
     }
-    const privateRoute = currentUser.username === undefined ?
+    const privateRoute = currentUser ?
       <Redirect to='/' /> :
       <Route exact={exact} path={path} render={render} currentUser={currentUser} />
     return (
