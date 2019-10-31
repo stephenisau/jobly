@@ -25,7 +25,7 @@ class User {
           WHERE username = $1`,
         [data.username]
     );
-
+    
     const user = result.rows[0];
 
     if (user) {

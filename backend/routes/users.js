@@ -6,6 +6,7 @@ const router = express.Router();
 const { ensureCorrectUser, authRequired } = require("../middleware/auth");
 
 const User = require("../models/user");
+const Job = require("../models/job");
 const { validate } = require("jsonschema");
 
 const { userNewSchema, userUpdateSchema } = require("../schemas");
@@ -102,5 +103,19 @@ router.delete("/:username", ensureCorrectUser, async function(req, res, next) {
     return next(err);
   }
 });
+
+
+/** GET /[handle] => {jobs: [jobs]} */
+router.get("/:username/jobs", ensureCorrectUser, authRequired, async function(req, res, next) {
+  try {
+    const jobs = await Job.getApplied(req.params.username);
+    return res.json({ jobs })
+  }
+  catch (err) {
+    return next(err);
+  }
+})
+
+
 
 module.exports = router;
