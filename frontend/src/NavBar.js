@@ -25,7 +25,6 @@ class NavBar extends React.PureComponent {
 
 
   render() {
-    console.log("NAVBAR: ", this);
     let loggedIn = localStorage.getItem('_token') ? true : false;
     return (
       <nav className="navbar navbar-expand-md">

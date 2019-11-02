@@ -1,38 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 
-class JobCard extends Component {
-  constructor(props) {
-    super(props);
-    this.buttonSwitcher = this.buttonSwitcher.bind(this);
-  }
-
-  buttonSwitcher() {
-    this.props.currentUser.jobs.map(j => {
-      if (j.id === this.props.job.id) {
-        return <button className="btn btn-warning">Applied</button>
-      }
-      return <button className="btn btn-danger">Apply</button>
-    });
-  }
-
+class JobCard extends React.PureComponent {
   render() {
-    console.log(this.props);
-    const { currentUser } = this.props;
-    const button = currentUser === undefined ? 
-        <button className="btn btn-danger">Apply</button> :
-        this.buttonSwitcher();
-
+    const { job } = this.props;
     return (
       <div className="Card card mt-3">
         <div className="card-body">
-          <h6>{this.props.job.title}</h6>
-          <p>Salary: {this.props.job.salary}</p>
-          <p>Equity: {this.props.job.equity}</p>
+          <h6>{job.title}</h6>
+          <p>Salary: {job.salary}</p>
+          <p>Equity: {job.equity}</p>
         </div>
-        {button}
+        {this.props.checkApplied(this.props.job.id) ? 
+              <button className="btn applied selected" onClick={this.handleClick}>Applied</button> 
+              : <button className="btn apply selected" onClick={this.handleClick}>Apply</button>}
       </div>
     );
-  }
+  };
 }
+
 
 export default JobCard;

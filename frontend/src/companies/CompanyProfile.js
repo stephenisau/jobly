@@ -3,8 +3,6 @@ import JoblyApi from '../JoblyApi';
 import JobList from '../jobs/JobList';
 import { withRouter } from 'react-router-dom';
 
-// import JobList from '../jobs/JobList';
-
 class CompanyProfile extends Component {
   constructor(props) {
     super(props)
@@ -24,20 +22,16 @@ class CompanyProfile extends Component {
   }
 
   render() {
-    const { currentUser } = this.props;
 
-    let companyProfile = this.state.loading === true ?
-      <div>Loading...</div> :
-      <div className='container'>
-        <h2>{this.state.company.name}</h2>
-        <p>{this.state.company.description}</p>
-        <JobList jobs={this.state.jobs} currentUser={currentUser}/>
-      </div>
+    const { currentUser } = this.props;
+    if (this.state.loading) return <React.Fragment>Loading...</React.Fragment>
 
     return (
-      <div>
-        { companyProfile }
-      </div>
+      <React.Fragment>
+        <h2>{this.state.company.name}</h2>
+        <p>{this.state.company.description}</p>
+        <JobList jobs={this.state.jobs} currentUser={currentUser} />
+      </React.Fragment>
 
     );
   }

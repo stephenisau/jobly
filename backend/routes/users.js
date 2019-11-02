@@ -32,6 +32,8 @@ router.get("/", authRequired, async function(req, res, next) {
 router.get("/:username", authRequired, async function(req, res, next) {
   try {
     const user = await User.findOne(req.params.username);
+    const jobs = await Job.getApplied(req.params.username);
+    user.jobsApplied = [...jobs]
     return res.json({user});
   }
 

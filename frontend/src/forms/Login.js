@@ -3,9 +3,6 @@ import JoblyApi from '../JoblyApi';
 import "./Login.css";
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
-import jwt from 'jsonwebtoken';
-import UserContext from '../UserContext';
-import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
@@ -21,19 +18,19 @@ class Login extends Component {
 
   async handleSignIn(data) {
     let response = await JoblyApi.login(data);
-    let user = jwt.decode(response.token);
-
-    this.props.addUser(user);
 
     localStorage.setItem('_token', response.token);
+
+    this.props.addUser(response.token);
     this.props.history.push('/');
   }
 
   async handleRegister(data) {
     try {
       let response = await JoblyApi.register(data);
-      let user = jwt.decode(response.token);
-      this.props.addUser(user);
+
+      this.props.addUser(response.token);
+
       localStorage.setItem('_token', response.token);
       this.props.history.push('/');
     } catch (err) {
@@ -51,8 +48,6 @@ class Login extends Component {
 
 
   render() {
-    console.log(this.props);
-
     return (
       <div className="container">
         <div className="mt-4 mb-1">

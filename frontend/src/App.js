@@ -5,6 +5,7 @@ import Routes from './routes/Routes';
 import { BrowserRouter } from 'react-router-dom';
 import JoblyApi from './JoblyApi'
 import UserContext from './UserContext';
+import jwt from "jsonwebtoken";
 
 class App extends Component {
   constructor(props) {
@@ -17,13 +18,15 @@ class App extends Component {
     this.addUser = this.addUser.bind(this);
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.addJob = this.addJob.bind(this);
+    this.checkAppliedJob = this.checkAppliedJob.bind(this);
   }
 
   async getCurrentUser() {
     const token = localStorage.getItem('_token');
     try {
-      let currentUser = await JoblyApi.checkToken(token);
-      this.setState({ currentUser, loaded: true })
+      let username = jwt.decode(token);
+      let User = await JoblyApi.getCurrentUser(username);
+      this.setState({ currentUser: User.user, loaded: true });
     } catch (err) {
       this.setState({ currentUser: null, loaded: false })
     }
@@ -33,8 +36,9 @@ class App extends Component {
     await this.getCurrentUser()
   }
 
-  addUser(user) {
-    this.setState({ currentUser: user })
+  async addUser(token) {
+    let User = await JoblyApi.getCurrentUser(token);
+    this.setState({ currentUser: User, loaded: true })
   }
 
   handleLogout() {
@@ -42,27 +46,38 @@ class App extends Component {
     this.setState({ currentUser: null })
   }
 
+  checkAppliedJob(id) {
+    debugger;
+    if (this.state.currentUser.user.jobs.filter(job => job.id === id).length > 0) {
+      return true
+    } else {
+      return false;
+    }
+  }
+
   async addJob(job) {
     await JoblyApi.applyToJob(job.id);
     this.setState(st => ({
-      currentUser: { ...st.currentUser, jobs: [...st.currentUser.jobs, job] }
+      currentUser: { ...st.currentUser.user, jobs: [...st.currentUser.user.jobs, job] }
     }));
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="container-fluid">
-        <UserContext.Provider value={this.state.currentUser, this.state.loaded}>
+        <UserContext.Provider value={this.state.currentUser}>
           <BrowserRouter>
-            <NavBar handleLogout={this.handleLogout}/>
-            <Routes 
+            <NavBar
+              loaded={this.state.loaded}
+              handleLogout={this.handleLogout} />
+            <Routes
+              checkApplied={this.checkAppliedJob}
               currentUser={this.state.currentUser}
               loaded={this.state.loaded}
               getCurrentUser={this.getCurrentUser}
               addJob={this.addJob}
               removeUser={this.removeUser}
-              addUser={this.addUser}/>
+              addUser={this.addUser} />
           </BrowserRouter>
         </UserContext.Provider>
       </div>

@@ -1,10 +1,9 @@
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 class JoblyApi {
   static async request(endpoint, paramsOrData = {}, verb = "get") {
     paramsOrData["_token"] = localStorage.getItem('_token');
-
     console.debug("API Call:", endpoint, paramsOrData, verb);
 
     try {
@@ -59,10 +58,10 @@ class JoblyApi {
     console.error("User cannot be registered!");
   }
 
-  static async checkToken(data) {
-    let token = jwt.decode(data);
-    let res = await this.request(`users/${token.username}`);
-    return res;
+  static async getCurrentUser(token) {
+    let userInfo = jwt.decode(token)
+    let res = await this.request(`users/${userInfo.username}`);
+    return res.user;
   }
 
   static async updateUser(username, data) {
@@ -76,6 +75,12 @@ class JoblyApi {
     let res = await this.request(`jobs/${id}/apply`, {}, "post");
     return res.message
   }
+
+  static async getAppliedJobs(username) {
+    let res = await this.request(`users/${username}/jobs`, {}, "get");
+    return res
+  }
+
 
 }
 export default JoblyApi;

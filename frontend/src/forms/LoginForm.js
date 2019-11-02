@@ -21,7 +21,6 @@ class LoginForm extends Component {
     this.props.signIn(this.state);
   }
   render() {
-    console.log(this);
     return (
       <div className="card-body">
         <form onSubmit={this.handleSubmit}>

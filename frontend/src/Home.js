@@ -8,7 +8,6 @@ class Home extends Component {
   render() {
     const { loaded } = this.props;
 
-    console.log(loaded);
     return (
       <div className="container-fluid">
         <h1>Jobly</h1>

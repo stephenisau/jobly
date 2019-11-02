@@ -9,7 +9,6 @@ class Job {
   /** Find all jobs (can filter on terms in data). */
 
   static async findAll(data, username) {
-    console.log(data);
     let baseQuery = `
       SELECT id, title, company_handle, salary, equity, a.state 
       FROM jobs 
@@ -42,7 +41,9 @@ class Job {
     // Finalize query and return results
 
     let finalQuery = baseQuery + whereExpressions.join(" AND ");
+    console.log("FINAL QUERY: ", finalQuery);
     const jobsRes = await db.query(finalQuery, queryValues);
+    console.log("JOBS", jobsRes);
     return jobsRes.rows;
   }
 
@@ -156,7 +157,10 @@ class Job {
 
   static async getApplied(username) {
       const result = await db.query(
-        `SELECT *
+        `SELECT 
+          j.id, j.title, j.salary,
+          j.equity, j.company_handle, 
+          a.state
         FROM jobs AS j
         JOIN applications AS a
           ON j.id=a.job_id
@@ -168,7 +172,7 @@ class Job {
         notFound.status = 404;
         throw notFound;
       }
-      
+
       return result.rows
   }
 }

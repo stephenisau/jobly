@@ -23,7 +23,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         <form onSubmit={this.handleSubmit}>
           <input name="search" value={this.state.search} onChange={this.handleChange} />
           <button className="btn btn-primary">Submit</button>
