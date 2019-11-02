@@ -36,11 +36,9 @@ class JobList extends Component {
   }
 
   render() {
-    debugger;
-    console.log(this.props);
-    const jobList = this.state.jobs.map(job => (
+    const jobList = this.state.jobs.map((job, idx) => (
       <React.Fragment>
-        <JobCard job={job} handleApply={this.handleApply} checkApplied={this.props.checkApplied}/>
+        <JobCard key={idx} job={job} handleApply={this.props.addJob} checkApplied={this.props.checkApplied}/>
       </React.Fragment>
     ))
     return (

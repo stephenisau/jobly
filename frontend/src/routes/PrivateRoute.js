@@ -5,7 +5,7 @@ class PrivateRoute extends Component {
 
   render() {
     const { exact, path, render, loaded, currentUser } = this.props;
-    if (loaded) return  <Redirect to='/' />
+    if (!loaded) return  <Redirect to='/' />
     return (
       <Route exact={exact} path={path} currentUser={currentUser} render={render}  />
     );

@@ -25,7 +25,6 @@ class CompanyDisplay extends Component {
 
   async componentDidMount() {
     let response = {};
-    // get request
     let companies = await JoblyApi.getCompanies(response);
     this.setState({ companies });
   }

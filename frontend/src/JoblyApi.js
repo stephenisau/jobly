@@ -1,28 +1,36 @@
 import axios from 'axios';
 import jwt from "jsonwebtoken";
 
-class JoblyApi {
-  static async request(endpoint, paramsOrData = {}, verb = "get") {
-    paramsOrData["_token"] = localStorage.getItem('_token');
-    console.debug("API Call:", endpoint, paramsOrData, verb);
+const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
 
-    try {
-      return (await axios({
-        method: verb,
-        url: `http://localhost:5000/${endpoint}`,
-        [verb === "get" ? "params" : "data"]: paramsOrData})).data;
-        // axios sends query string data via the "params" key,
-        // and request body data via the "data" key,
-        // so the key we need depends on the HTTP verb
+class JoblyApi {
+  static async request(endpoint, params = {}, verb = "get") {
+    // for now, hardcode a token for user "testuser"
+    let _token = localStorage.getItem("_token");
+
+    console.debug("API Call:", endpoint, params, verb);
+
+    let q;
+    
+    if (verb === "get") {
+      q = axios.get(
+        `${BASE_URL}/${endpoint}`, { params: { _token, ...params } });
+    } else if (verb === "post") {
+      q = axios.post(
+        `${BASE_URL}/${endpoint}`, { _token, ...params });
+    } else if (verb === "patch") {
+      q = axios.patch(
+        `${BASE_URL}/${endpoint}`, { _token, ...params });
     }
 
-    catch(err) {
+    try {
+      return (await q).data;
+    } catch (err) {
       console.error("API Error:", err.response);
       let message = err.response.data.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
-
   static async getCompany(data) {
     let res = await this.request(`companies/${data.handle}`, data);
     return res.company;
@@ -54,14 +62,14 @@ class JoblyApi {
     let res = await this.request('users', data, 'post');
     if (res) {
       return res;
-    } 
+    }
     console.error("User cannot be registered!");
   }
 
   static async getCurrentUser(token) {
     let userInfo = jwt.decode(token)
     let res = await this.request(`users/${userInfo.username}`);
-    return res.user;
+    return res;
   }
 
   static async updateUser(username, data) {

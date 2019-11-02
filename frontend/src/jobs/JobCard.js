@@ -1,7 +1,18 @@
 import React from "react";
 
 class JobCard extends React.PureComponent {
+
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.props.handleApply(this.props.job);
+  }
+
   render() {
+    console.log(this.props);
     const { job } = this.props;
     return (
       <div className="Card card mt-3">
@@ -11,8 +22,8 @@ class JobCard extends React.PureComponent {
           <p>Equity: {job.equity}</p>
         </div>
         {this.props.checkApplied(this.props.job.id) ? 
-              <button className="btn applied selected" onClick={this.handleClick}>Applied</button> 
-              : <button className="btn apply selected" onClick={this.handleClick}>Apply</button>}
+              <button type="button" className="btn btn-danger" onClick={this.handleClick} disabled>Applied</button> 
+              : <button className="btn btn-danger selected" onClick={this.handleClick}>Apply</button>}
       </div>
     );
   };

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Switch, Route, Redirect } from 'react-router-dom';
 import CompanyDisplay from '../companies/CompanyDisplay';
 import CompanyProfile from '../companies/CompanyProfile'
@@ -9,9 +9,8 @@ import Login from '../forms/Login';
 import PrivateRoute from './PrivateRoute';
 import RegisterForm from "../forms/RegisterForm";
 
-class Routes extends Component {
+class Routes extends React.PureComponent {
   render() {
-    console.log(this.props);
     return (
       <Switch>
 
@@ -64,7 +63,6 @@ class Routes extends Component {
 
         <Route exact path='/'
           render={() => <Home currentUser={this.props.currentUser} loaded={this.props.loaded} />} />
-
         <Redirect to='/' />
 
       </Switch>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
 import Alert from '../forms/Alert';
-import jwt from "jsonwebtoken";
 
 class Profile extends Component {
   constructor(props) {
@@ -27,6 +26,7 @@ class Profile extends Component {
   async handleSubmit(evt) {
     evt.preventDefault();
     let userObj = this.state
+    userObj._token = localStorage.getItem("_token");
     let username = this.state._username;
     let updatedUser = await JoblyApi.updateUser(username, userObj);
     this.setState({...updatedUser, _submitted: true });
@@ -35,8 +35,7 @@ class Profile extends Component {
 
   async componentDidMount() {
     let token = localStorage.getItem('_token');
-    let userInfo = jwt.decode(token);
-    let userObj = await JoblyApi.getCurrentUser(userInfo.username);
+    let userObj = await JoblyApi.getCurrentUser(token);
     let { username, first_name, last_name, email } = userObj.user
     this.setState({ _username: username, first_name, last_name, email });
   }

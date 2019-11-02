@@ -167,12 +167,6 @@ class Job {
         WHERE a.username = $1`, 
         [username]);
 
-      if (result.rows.length === 0) {
-        let notFound = new Error(`${username} hasn't applied to any jobs yet!`)
-        notFound.status = 404;
-        throw notFound;
-      }
-
       return result.rows
   }
 }

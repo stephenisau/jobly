@@ -18,7 +18,6 @@ class Login extends Component {
 
   async handleSignIn(data) {
     let response = await JoblyApi.login(data);
-
     localStorage.setItem('_token', response.token);
 
     this.props.addUser(response.token);
@@ -28,10 +27,10 @@ class Login extends Component {
   async handleRegister(data) {
     try {
       let response = await JoblyApi.register(data);
+      localStorage.setItem('_token', response.token);
 
       this.props.addUser(response.token);
 
-      localStorage.setItem('_token', response.token);
       this.props.history.push('/');
     } catch (err) {
       console.log(err);

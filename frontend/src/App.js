@@ -5,7 +5,6 @@ import Routes from './routes/Routes';
 import { BrowserRouter } from 'react-router-dom';
 import JoblyApi from './JoblyApi'
 import UserContext from './UserContext';
-import jwt from "jsonwebtoken";
 
 class App extends Component {
   constructor(props) {
@@ -24,9 +23,8 @@ class App extends Component {
   async getCurrentUser() {
     const token = localStorage.getItem('_token');
     try {
-      let username = jwt.decode(token);
-      let User = await JoblyApi.getCurrentUser(username);
-      this.setState({ currentUser: User.user, loaded: true });
+      let User = await JoblyApi.getCurrentUser(token);
+      this.setState({ currentUser: User, loaded: true });
     } catch (err) {
       this.setState({ currentUser: null, loaded: false })
     }
@@ -47,7 +45,6 @@ class App extends Component {
   }
 
   checkAppliedJob(id) {
-    debugger;
     if (this.state.currentUser.user.jobs.filter(job => job.id === id).length > 0) {
       return true
     } else {
@@ -63,6 +60,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="container-fluid">
         <UserContext.Provider value={this.state.currentUser}>
