@@ -41,7 +41,6 @@ class Profile extends Component {
   }
 
   render() {
-
     if (this.state._submitted) return <Alert color='success' message={`User updated successfully.`} /> 
 
     return (

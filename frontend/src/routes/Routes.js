@@ -2,12 +2,12 @@ import React from "react";
 import { Switch, Route, Redirect } from 'react-router-dom';
 import CompanyDisplay from '../companies/CompanyDisplay';
 import CompanyProfile from '../companies/CompanyProfile'
-import JobList from '../jobs/JobList';
 import Profile from '../users/Profile';
 import Home from '../Home';
 import Login from '../forms/Login';
 import PrivateRoute from './PrivateRoute';
 import RegisterForm from "../forms/RegisterForm";
+import JobDisplay from "../jobs/JobDisplay";
 
 class Routes extends React.PureComponent {
   render() {
@@ -18,22 +18,28 @@ class Routes extends React.PureComponent {
           render={rtProps => (
             <Login {...rtProps}
               addUser={this.props.addUser} />)} />
+
         <Route exact path="/register"
           render={rtProps => (
             <RegisterForm {...rtProps} addUser={this.props.addUser} />
           )} />
+
         <PrivateRoute exact path='/logout'
           loaded={this.props.loaded}
           logout={true}
           currentUser={this.props.currentUser}
           removeUser={this.props.removeUser} />
+
         <PrivateRoute
           exact
           path='/companies/:handle'
           currentUser={this.props.currentUser}
           checkApplied={this.props.checkApplied}
           loaded={this.props.loaded}
-          render={() => <CompanyProfile currentUser={this.props.currentUser} />} />
+          render={() => <CompanyProfile
+            addJob={this.props.addJob}
+            currentUser={this.props.currentUser}
+            checkApplied={this.props.checkApplied} />} />
 
         <PrivateRoute
           exact
@@ -47,11 +53,11 @@ class Routes extends React.PureComponent {
           exact
           path='/jobs'
           currentUser={this.props.currentUser}
-          loaded={this.props.loaded}
-          render={routeProps => <JobList {...routeProps}
+          render={routeProps => <JobDisplay {...routeProps}
+            handleApply={this.props.addJob}
             checkApplied={this.props.checkApplied}
-            currentUser={this.props.currentUser}
-            addJob={this.props.addJob} />} />
+            loaded={this.props.loaded}
+            currentUser={this.props.currentUser} />} />
 
         <PrivateRoute
           exact

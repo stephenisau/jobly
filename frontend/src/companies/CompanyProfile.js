@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
-import JobList from '../jobs/JobList';
+import JobCard from "../jobs/JobCard";
 import { withRouter } from 'react-router-dom';
 
 class CompanyProfile extends Component {
@@ -8,7 +8,8 @@ class CompanyProfile extends Component {
     super(props)
     this.state = {
       jobs: [],
-      loading: true
+      loading: true,
+      company: this.props.match.params
     }
   }
   async componentDidMount() {
@@ -22,15 +23,13 @@ class CompanyProfile extends Component {
   }
 
   render() {
-
-    const { currentUser } = this.props;
     if (this.state.loading) return <React.Fragment>Loading...</React.Fragment>
-
+    const jobList = this.state.jobs.map(job => <JobCard job={job} checkApplied={this.props.checkApplied} handleApply={this.props.addJob}/>)
     return (
       <React.Fragment>
         <h2>{this.state.company.name}</h2>
         <p>{this.state.company.description}</p>
-        <JobList jobs={this.state.jobs} currentUser={currentUser} />
+        {jobList}
       </React.Fragment>
 
     );

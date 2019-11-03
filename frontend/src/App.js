@@ -55,12 +55,16 @@ class App extends Component {
   async addJob(job) {
     await JoblyApi.applyToJob(job.id);
     this.setState(st => ({
-      currentUser: { ...st.currentUser.user, jobs: [...st.currentUser.user.jobs, job] }
+      currentUser: {
+        user: {
+          ...st.currentUser.user,
+          jobs: [...st.currentUser.user.jobs, job]
+        }
+      }
     }));
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="container-fluid">
         <UserContext.Provider value={this.state.currentUser}>
@@ -69,6 +73,7 @@ class App extends Component {
               loaded={this.state.loaded}
               handleLogout={this.handleLogout} />
             <Routes
+              handleLogout={this.handleLogout}
               checkApplied={this.checkAppliedJob}
               currentUser={this.state.currentUser}
               loaded={this.state.loaded}

@@ -20,8 +20,14 @@ class RegisterForm extends Component {
   }
 
   async handleSubmit(evt) {
-    evt.preventDefault()
-    this.props.register(this.state);
+    evt.preventDefault();
+    try {
+      this.props.register(this.state);
+    } catch(err) {
+      console.log("ERROR");
+      console.log(this.state);
+      console.log(this.props);
+    }
   }
   render() {
     return (

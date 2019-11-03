@@ -1,49 +1,14 @@
-import React, { Component } from "react";
-import Search from '../forms/Search';
+import React from "react";
 import JobCard from "./JobCard"
-import JoblyApi from '../JoblyApi';
 
-class JobList extends Component {
+class JobList extends React.PureComponent {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      jobs: []
-    };
-    this.search = this.search.bind(this);
-    this.apply = this.apply.bind(this);
-  }
-
-  async search(search) {
-    let jobs = await JoblyApi.getJobs(search);
-    this.setState({ jobs });
-  }
-
-  async apply(idx) {
-    let jobId = this.state.jobs[idx].id;
-    let message = JoblyApi.applyToJob(jobId);
-    this.setState(st => ({
-      jobs: st.jobs.map(job =>
-        job.id === jobId
-          ? { ...job, state: message }
-          : job)
-    }));
-  }
-
-  async componentDidMount() {
-    let jobs = await JoblyApi.getJobs();
-    this.setState({ jobs });
-  }
 
   render() {
-    const jobList = this.state.jobs.map((job, idx) => (
-      <React.Fragment>
-        <JobCard key={idx} job={job} handleApply={this.props.addJob} checkApplied={this.props.checkApplied}/>
-      </React.Fragment>
-    ))
+    const jobList = this.props.jobs.map((job, idx) => (
+        <JobCard key={idx} job={job} handleApply={this.props.handleApply} checkApplied={this.props.checkApplied}/>))  
     return (
       <React.Fragment>
-        <Search search={this.search}/>
         {jobList}
       </React.Fragment>
     );

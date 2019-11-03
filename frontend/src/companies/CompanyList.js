@@ -15,9 +15,9 @@ class CompanyList extends Component {
       </Link>
     });
     return (
-      <div>CompanyList
-      {companyList}
-      </div>
+      <React.Fragment>
+        {companyList}
+      </React.Fragment>
     );
   }
 }

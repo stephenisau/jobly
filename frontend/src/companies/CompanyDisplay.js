@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CompanyList from './CompanyList';
+import CompanyCard from './CompanyCard';
 import JoblyApi from '../JoblyApi'
 import Search from '../forms/Search';
 
@@ -18,14 +18,13 @@ class CompanyDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      companies: this.props.companies
+      companies: []
     }
     this.search = this.search.bind(this);
   }
 
   async componentDidMount() {
-    let response = {};
-    let companies = await JoblyApi.getCompanies(response);
+    let companies = await JoblyApi.getCompanies();
     this.setState({ companies });
   }
 
@@ -38,11 +37,13 @@ class CompanyDisplay extends Component {
 
 
   render() {
-
+    const companies = this.state.companies.length ? this.state.companies.map(company => 
+      <CompanyCard company={company} key={company.handle} />) : "Sorry, no results"
     return (
       <div>CompanyDisplay
       <Search search={this.search}/>
-      <CompanyList companies={this.state.companies} />
+      {companies}
+      {/* <CompanyList companies={this.state.companies} /> */}
       </div>
     );
   }
