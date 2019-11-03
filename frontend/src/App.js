@@ -22,10 +22,10 @@ class App extends Component {
 
   async getCurrentUser() {
     const token = localStorage.getItem('_token');
-    try {
+    if (localStorage.getItem("_token")) {
       let User = await JoblyApi.getCurrentUser(token);
       this.setState({ currentUser: User, loaded: true });
-    } catch (err) {
+    } else {
       this.setState({ currentUser: null, loaded: false })
     }
   }
