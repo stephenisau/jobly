@@ -34,18 +34,15 @@ class Routes extends React.PureComponent {
           exact
           path='/companies/:handle'
           currentUser={this.props.currentUser}
-          checkApplied={this.props.checkApplied}
-          loaded={this.props.loaded}
           render={() => <CompanyProfile
             addJob={this.props.addJob}
-            currentUser={this.props.currentUser}
-            checkApplied={this.props.checkApplied} />} />
+            currentUser={this.props.currentUser} />} />
 
         <PrivateRoute
           exact
           path='/companies'
-          currentUser={this.props.currentUser}
           loaded={this.props.loaded}
+          currentUser={this.props.currentUser}
           render={routeProps => <CompanyDisplay {...routeProps} />} />
 
 
@@ -55,7 +52,6 @@ class Routes extends React.PureComponent {
           currentUser={this.props.currentUser}
           render={routeProps => <JobDisplay {...routeProps}
             handleApply={this.props.addJob}
-            checkApplied={this.props.checkApplied}
             loaded={this.props.loaded}
             currentUser={this.props.currentUser} />} />
 

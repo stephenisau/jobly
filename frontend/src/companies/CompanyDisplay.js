@@ -40,10 +40,9 @@ class CompanyDisplay extends Component {
     const companies = this.state.companies.length ? this.state.companies.map(company => 
       <CompanyCard company={company} key={company.handle} />) : "Sorry, no results"
     return (
-      <div>CompanyDisplay
+      <div>
       <Search search={this.search}/>
       {companies}
-      {/* <CompanyList companies={this.state.companies} /> */}
       </div>
     );
   }

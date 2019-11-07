@@ -11,13 +11,12 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser: null,
-      loaded: false
+      loaded: false,
     }
     this.handleLogout = this.handleLogout.bind(this);
     this.addUser = this.addUser.bind(this);
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.addJob = this.addJob.bind(this);
-    this.checkAppliedJob = this.checkAppliedJob.bind(this);
   }
 
   async getCurrentUser() {
@@ -44,16 +43,8 @@ class App extends Component {
     this.setState({ currentUser: null })
   }
 
-  checkAppliedJob(id) {
-    if (this.state.currentUser.user.jobs.filter(job => job.id === id).length > 0) {
-      return true
-    } else {
-      return false;
-    }
-  }
 
   async addJob(job) {
-    await JoblyApi.applyToJob(job.id);
     this.setState(st => ({
       currentUser: {
         user: {
@@ -73,8 +64,8 @@ class App extends Component {
               loaded={this.state.loaded}
               handleLogout={this.handleLogout} />
             <Routes
+              jobs={this.state.jobs}
               handleLogout={this.handleLogout}
-              checkApplied={this.checkAppliedJob}
               currentUser={this.state.currentUser}
               loaded={this.state.loaded}
               getCurrentUser={this.getCurrentUser}

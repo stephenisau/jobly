@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import JobList from "./JobList";
 import Search from "../forms/Search";
 import JoblyApi from "../JoblyApi";
+import UserContext from "../UserContext";
 
 class JobDisplay extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class JobDisplay extends Component {
     };
     this.search = this.search.bind(this);
     this.apply = this.apply.bind(this);
+    this.checkApplied = this.checkApplied.bind(this);
   }
 
   async componentDidMount() {
@@ -18,15 +20,26 @@ class JobDisplay extends Component {
     this.setState({ jobs: result });
   }
 
+  static contextType = UserContext;
 
   async search(search) {
     let jobs = await JoblyApi.getJobs(search);
     this.setState({ jobs });
   }
 
-  async apply(idx) {
+  checkApplied(id) {
+    if (this.props.currentUser.user.jobs.filter(job => job.id === id).length > 0) {
+      return true
+    } else {
+      return false;
+    }
+  }
+
+  async apply(job) {
+    let idx = job.id - 1;
     let jobId = this.state.jobs[idx].id;
-    let message = JoblyApi.applyToJob(jobId);
+    this.props.handleApply(job)
+    let message = await JoblyApi.applyToJob(jobId);
     this.setState(st => ({
       jobs: st.jobs.map(job =>
         job.id === jobId
@@ -36,10 +49,11 @@ class JobDisplay extends Component {
   }
 
   render() {
+    if (!this.props.currentUser) return <React.Fragment>Loading...</React.Fragment>
     return (
       <div>
         <Search search={this.search} />
-        <JobList jobs={this.state.jobs} checkApplied={this.props.checkApplied} handleApply={this.props.handleApply}/>
+        <JobList jobs={this.state.jobs} checkApplied={this.checkApplied} handleApply={this.props.handleApply} apply={this.apply}/>
       </div>
     );
   }

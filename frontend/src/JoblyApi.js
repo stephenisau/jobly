@@ -31,8 +31,8 @@ class JoblyApi {
       throw Array.isArray(message) ? message : [message];
     }
   }
-  static async getCompany(data) {
-    let res = await this.request(`companies/${data.handle}`, data);
+  static async getCompany(handle) {
+    let res = await this.request(`companies/${handle}`);
     return res.company;
   }
 

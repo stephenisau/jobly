@@ -66,4 +66,5 @@ class NavBar extends React.PureComponent {
   }
 }
 
+
 export default withRouter(NavBar);
