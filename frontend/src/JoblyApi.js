@@ -11,7 +11,7 @@ class JoblyApi {
     console.debug("API Call:", endpoint, params, verb);
 
     let q;
-    
+
     if (verb === "get") {
       q = axios.get(
         `${BASE_URL}/${endpoint}`, { params: { _token, ...params } });
@@ -31,8 +31,9 @@ class JoblyApi {
       throw Array.isArray(message) ? message : [message];
     }
   }
-  static async getCompany(handle) {
-    let res = await this.request(`companies/${handle}`);
+  static async getCompany(handle, userInfo) {
+    let { username } = userInfo;
+    let res = await this.request(`companies/${handle}`, { params: { username } });
     return res.company;
   }
 

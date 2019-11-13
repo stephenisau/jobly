@@ -3,6 +3,8 @@ import JoblyApi from '../JoblyApi';
 import CompanyJobCard from "./CompanyJobCard";
 import { withRouter } from "react-router";
 
+import jwt from "jsonwebtoken";
+
 class CompanyProfile extends Component {
   constructor(props) {
     super(props)
@@ -17,7 +19,9 @@ class CompanyProfile extends Component {
 
   async componentDidMount() {
     let { handle } = this.props.match.params;
-    let company = await JoblyApi.getCompany(handle);
+    let token = localStorage.getItem("_token");
+    let userInfo = jwt.decode(token);
+    let company = await JoblyApi.getCompany(handle, userInfo);
     this.setState(st => ({
       jobs: [...st.jobs, ...company.jobs],
       company: { ...company },
@@ -34,13 +38,13 @@ class CompanyProfile extends Component {
   }
 
   async apply(job) {
-    let currJob = this.state.jobs.find(j => j.id === job.id)
+    let jobId = this.state.jobs.findIndex(j => j.id === job.id)
     // let jobId = this.state.jobs.indexOf(currJob);
     this.props.handleApply(job)
-    let message = await JoblyApi.applyToJob(currJob.id);
+    let message = await JoblyApi.applyToJob(job.id);
     this.setState(st => ({
       jobs: st.jobs.map(job =>
-        job === currJob
+        job === jobId
           ? { ...job, state: message }
           : job)
     }));
@@ -48,7 +52,6 @@ class CompanyProfile extends Component {
 
 
   render() {
-    console.log(this.state);
     if (this.state.loading) return <React.Fragment>Loading...</React.Fragment>
 
     const jobList = this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} checkApplied={this.checkApplied} handleApply={this.props.addJob} apply={this.apply}/>)

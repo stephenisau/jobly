@@ -52,7 +52,6 @@ class JobDisplay extends Component {
   }
 
   render() {
-    console.log(this.state);
     if (!this.props.currentUser) return <React.Fragment>Loading...</React.Fragment>
     return (
       <div>
