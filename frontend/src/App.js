@@ -56,6 +56,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("STATE IN APP: ", this.state)
     return (
         <UserContext.Provider value={this.state.currentUser}>
           <BrowserRouter>

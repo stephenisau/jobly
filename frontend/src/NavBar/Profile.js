@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
 import Alert from '../Forms/Alert';
+import JobCard from "../Jobs/JobCard";
 
 class Profile extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class Profile extends Component {
     userObj._token = localStorage.getItem("_token");
     let username = this.state._username;
     let updatedUser = await JoblyApi.updateUser(username, userObj);
-    this.setState({...updatedUser, _submitted: true });
+    this.setState({ ...updatedUser, _submitted: true });
   }
 
 
@@ -41,7 +42,11 @@ class Profile extends Component {
   }
 
   render() {
-    if (this.state._submitted) return <Alert color='success' message={`User updated successfully.`} /> 
+    if (this.state._submitted) return <Alert color='success' message={`User updated successfully.`} />
+    const jobList = this.props.currentUser.user.jobs.map((job, idx) => (
+      <JobCard key={idx} job={job} handleApply={this.props.handleApply} apply={this.props.apply} checkApplied={this.props.checkApplied} />
+    ))
+    console.log("PROFILE: ", this.props);
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
@@ -68,6 +73,9 @@ class Profile extends Component {
           </div>
           <button type="submit" className="btn btn-primary">Save Changes</button>
         </form>
+        <br/>
+        <h1>Jobs Applied</h1>
+          {jobList}
       </div>
     );
   }

@@ -39,12 +39,11 @@ class CompanyProfile extends Component {
 
   async apply(job) {
     let jobId = this.state.jobs.findIndex(j => j.id === job.id)
-    // let jobId = this.state.jobs.indexOf(currJob);
     this.props.handleApply(job)
     let message = await JoblyApi.applyToJob(job.id);
     this.setState(st => ({
-      jobs: st.jobs.map(job =>
-        job === jobId
+      jobs: st.jobs.map((job, idx) =>
+        idx === jobId
           ? { ...job, state: message }
           : job)
     }));
@@ -60,7 +59,7 @@ class CompanyProfile extends Component {
       <React.Fragment>
         <h2>{this.state.company.name}</h2>
         <p>{this.state.company.description}</p>
-        {jobList}
+        {this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} checkApplied={this.checkApplied} handleApply={this.props.addJob} apply={this.apply}/>)}
       </React.Fragment>
 
     );
