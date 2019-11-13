@@ -48,15 +48,19 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="mt-4 mb-1">
-          <button className={this.state.login ? "btn btn-primary mr-1 active" : "btn btn-primary mr-1"} onClick={this.signInChange}>Sign In</button>
-          <button className={this.state.login ? "btn btn-primary ml-1" : "btn btn-primary ml-1 active"} onClick={this.registerChange}>Register</button>
-        </div>
-        <div className="card">
-          {this.state.login ? 
-              <LoginForm signIn={this.handleSignIn} /> : 
-              <RegisterForm register={this.handleRegister} />}
+      <div id="login-form">
+        <div className="login-form">
+            <div className="form-group">
+              <div className="mt-4 mb-1">
+                <button className={this.state.login ? "btn btn-primary mr-1 active" : "btn btn-primary mr-1"} onClick={this.signInChange}>Sign In</button>
+                <button className={this.state.login ? "btn btn-primary ml-1" : "btn btn-primary ml-1 active"} onClick={this.registerChange}>Register</button>
+              </div>
+              <div className="card">
+                {this.state.login ?
+                  <LoginForm signIn={this.handleSignIn} /> :
+                  <RegisterForm register={this.handleRegister} />}
+              </div>
+            </div>
         </div>
       </div>
     );

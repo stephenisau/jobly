@@ -1,0 +1,13 @@
+.navbar {
+    background-color: black;
+    color: white;
+}
+
+#nav-link:link, #nav-link:visited, #nav-link:hover, #nav-link:active {
+    text-decoration: none; 
+    color: white;
+  }
+
+.nav-link {
+    padding: auto;
+}

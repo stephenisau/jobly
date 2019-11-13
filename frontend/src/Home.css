@@ -1,0 +1,16 @@
+.homepage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    opacity: 0.85;
+    width: 100%;
+}
+
+
+#home-container {
+    background-image: url("./assets/images/bg_picture.jpeg");
+    min-height: 100vh;
+}

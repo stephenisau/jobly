@@ -1,15 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
 import { Switch, Route, Redirect } from 'react-router-dom';
-import CompanyDisplay from '../companies/CompanyDisplay';
-import CompanyProfile from '../companies/CompanyProfile'
-import Profile from '../users/Profile';
+import CompanyDisplay from '../Companies/CompanyDisplay';
+import CompanyProfile from '../Companies/CompanyProfile'
+import Profile from '../NavBar/Profile';
 import Home from '../Home';
-import Login from '../forms/Login';
+import Login from '../Forms/Login';
 import PrivateRoute from './PrivateRoute';
-import RegisterForm from "../forms/RegisterForm";
-import JobDisplay from "../jobs/JobDisplay";
+import RegisterForm from "../Forms/RegisterForm";
+import JobDisplay from "../Jobs/JobDisplay";
 
-class Routes extends React.PureComponent {
+class Routes extends Component {
   render() {
     return (
       <Switch>
@@ -35,7 +35,7 @@ class Routes extends React.PureComponent {
           path='/companies/:handle'
           currentUser={this.props.currentUser}
           render={() => <CompanyProfile
-            addJob={this.props.addJob}
+            handleApply={this.props.addJob}
             currentUser={this.props.currentUser} />} />
 
         <PrivateRoute

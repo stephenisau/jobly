@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import NavBar from './NavBar';
+import NavBar from './NavBar/NavBar';
 import Routes from './routes/Routes';
 import { BrowserRouter } from 'react-router-dom';
 import JoblyApi from './JoblyApi'
@@ -57,14 +57,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
         <UserContext.Provider value={this.state.currentUser}>
           <BrowserRouter>
             <NavBar
               loaded={this.state.loaded}
               handleLogout={this.handleLogout} />
             <Routes
-              jobs={this.state.jobs}
               handleLogout={this.handleLogout}
               currentUser={this.state.currentUser}
               loaded={this.state.loaded}
@@ -74,7 +72,6 @@ class App extends Component {
               addUser={this.addUser} />
           </BrowserRouter>
         </UserContext.Provider>
-      </div>
     );
   }
 }

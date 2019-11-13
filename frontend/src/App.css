@@ -21,6 +21,9 @@
   color: #09d3ac;
 }
 
+html {
+  height: 100%
+}
 
 .lds-dual-ring {
   display: inline-block;
@@ -45,4 +48,10 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+#container-fluid {
+  background-image: url("./assets/images/bg_picture.jpeg");
+  height: 100%;
+  width: 100%;
 }

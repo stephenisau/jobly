@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import JobList from "./JobList";
-import Search from "../forms/Search";
+import Search from "../Forms/Search";
 import JoblyApi from "../JoblyApi";
 import UserContext from "../UserContext";
 
@@ -22,8 +22,11 @@ class JobDisplay extends Component {
 
   static contextType = UserContext;
 
-  async search(search) {
-    let jobs = await JoblyApi.getJobs(search);
+  async search(query) {
+    let response = {};
+    response['_token'] = localStorage.getItem('_token');
+    response['search'] = query;
+    let jobs = await JoblyApi.getJobs(response);
     this.setState({ jobs });
   }
 
@@ -49,6 +52,7 @@ class JobDisplay extends Component {
   }
 
   render() {
+    console.log(this.state);
     if (!this.props.currentUser) return <React.Fragment>Loading...</React.Fragment>
     return (
       <div>

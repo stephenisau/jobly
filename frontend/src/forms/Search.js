@@ -18,15 +18,20 @@ class Search extends Component {
 
   async handleSubmit(evt) {
     evt.preventDefault()
-    this.props.search(this.state.search);
+    await this.props.search(this.state.search);
   }
 
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input name="search" value={this.state.search} onChange={this.handleChange} />
-          <button className="btn btn-primary">Submit</button>
+          <input name="search" 
+            value={this.state.search} 
+            onChange={this.handleChange} 
+            placeholder="Search" 
+            aria-label="Search"
+            type="search"/>
+          <button className="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
     );

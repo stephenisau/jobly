@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
 import CompanyJobCard from "./CompanyJobCard";
-import UserContext from "../UserContext";
 import { withRouter } from "react-router";
 
 class CompanyProfile extends Component {
@@ -15,8 +14,6 @@ class CompanyProfile extends Component {
     this.checkApplied = this.checkApplied.bind(this);
     this.apply = this.apply.bind(this);
   }
-
-  static contextType = UserContext;
 
   async componentDidMount() {
     let { handle } = this.props.match.params;
@@ -37,13 +34,13 @@ class CompanyProfile extends Component {
   }
 
   async apply(job) {
-    let idx = job.id - 1;
-    let jobId = this.state.jobs[idx].id;
+    let currJob = this.state.jobs.find(j => j.id === job.id)
+    // let jobId = this.state.jobs.indexOf(currJob);
     this.props.handleApply(job)
-    let message = await JoblyApi.applyToJob(jobId);
+    let message = await JoblyApi.applyToJob(currJob.id);
     this.setState(st => ({
       jobs: st.jobs.map(job =>
-        job.id === jobId
+        job === currJob
           ? { ...job, state: message }
           : job)
     }));
@@ -51,6 +48,7 @@ class CompanyProfile extends Component {
 
 
   render() {
+    console.log(this.state);
     if (this.state.loading) return <React.Fragment>Loading...</React.Fragment>
 
     const jobList = this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} checkApplied={this.checkApplied} handleApply={this.props.addJob} apply={this.apply}/>)

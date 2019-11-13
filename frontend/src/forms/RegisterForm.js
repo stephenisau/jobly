@@ -25,8 +25,6 @@ class RegisterForm extends Component {
       this.props.register(this.state);
     } catch(err) {
       console.log("ERROR");
-      console.log(this.state);
-      console.log(this.props);
     }
   }
   render() {
@@ -55,7 +53,7 @@ class RegisterForm extends Component {
             <input type="first_name"
               name="first_name"
               value={this.state.first_name}
-              placeholder="first_name"
+              placeholder="First Name"
               onChange={this.handleChange}
               className="form-control" />
           </div>
@@ -64,7 +62,7 @@ class RegisterForm extends Component {
             <input type="last_name"
               name="last_name"
               value={this.state.last_name}
-              placeholder="last_name"
+              placeholder="Last Name"
               onChange={this.handleChange}
               className="form-control" />
           </div>
@@ -73,11 +71,11 @@ class RegisterForm extends Component {
             <input type="email"
               name="email"
               value={this.state.email}
-              placeholder="email"
+              placeholder="Email"
               onChange={this.handleChange}
               className="form-control" />
           </div>
-          <button className="btn btn-primary">Submit</button>
+          <button className="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
     );

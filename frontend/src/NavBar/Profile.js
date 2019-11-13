@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
-import Alert from '../forms/Alert';
+import Alert from '../Forms/Alert';
 
 class Profile extends Component {
   constructor(props) {
@@ -42,7 +42,6 @@ class Profile extends Component {
 
   render() {
     if (this.state._submitted) return <Alert color='success' message={`User updated successfully.`} /> 
-
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
@@ -67,7 +66,6 @@ class Profile extends Component {
             <label htmlFor="password">Password</label>
             <input onChange={this.handleChange} name="password" value={this.state.password} type="password" className="form-control" id="password" placeholder="Password" />
           </div>
-          {alert}
           <button type="submit" className="btn btn-primary">Save Changes</button>
         </form>
       </div>

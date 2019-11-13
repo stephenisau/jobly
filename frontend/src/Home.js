@@ -1,20 +1,31 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import UserContext from './UserContext';
+import "./Home.css";
 
 class Home extends Component {
-  static contextType = UserContext;
 
   render() {
-    // const loggedIn = localStorage.getItem("_token") ? true : false;   
-    const currentUser = this.context;
     return (
-      <div className="container-fluid">
-        <h1>Jobly</h1>
-        <p>All the jobs!</p>
-        {currentUser ?
-          (<h2>Welcome Back {this.context.currentUser}</h2>) :
-          (<Link to="/login">Log In</Link>)}
+      <div id="home-container">
+        <div className="container justify-content-center text-center">
+          <div className="homepage-container">
+            <div className="homepage card">
+              <h1>Welcome to Jobly</h1>
+              <p>A place for all your jobs!</p>
+              <UserContext.Consumer>
+                {currentUser => (
+                  <div className="Home">
+                    {currentUser
+                      ? <h2>Welcome Back {currentUser.user.first_name}!</h2>
+                      : <Link to="/login">Log in</Link>
+                    }
+                  </div>
+                )}
+              </UserContext.Consumer>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
