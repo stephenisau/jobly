@@ -26,6 +26,7 @@ class Search extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <input name="search" 
+            id="searchbar"
             value={this.state.search} 
             onChange={this.handleChange} 
             placeholder="Search" 

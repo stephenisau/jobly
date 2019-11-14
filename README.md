@@ -67,7 +67,3 @@ No tests are written to this point.
 - [ ] Reconfigure file hierarchy
 - [ ] Add apply functionality
 
-
-## Additional Information
-
-This application is unifinished, but I would love to go back and reconfigure the application correctly.

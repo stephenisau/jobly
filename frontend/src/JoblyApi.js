@@ -5,7 +5,9 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
 
 class JoblyApi {
   static async request(endpoint, params = {}, verb = "get") {
-    // for now, hardcode a token for user "testuser"
+    /* Function that makes a request to backend
+     * Default to `GET` request
+     */
     let _token = localStorage.getItem("_token");
 
     console.debug("API Call:", endpoint, params, verb);
