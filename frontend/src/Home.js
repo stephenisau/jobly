@@ -8,22 +8,20 @@ class Home extends Component {
   render() {
     return (
       <div id="home-container">
-        <div className="container justify-content-center text-center">
-          <div className="homepage-container">
-            <div className="homepage card">
-              <h1>Welcome to Jobly</h1>
-              <p>A place for all your jobs!</p>
-              <UserContext.Consumer>
-                {currentUser => (
-                  <div className="Home">
-                    {currentUser
-                      ? <h2>Welcome Back {currentUser.user.first_name}!</h2>
-                      : <Link to="/login">Log in</Link>
-                    }
-                  </div>
-                )}
-              </UserContext.Consumer>
-            </div>
+        <div className="homepage-container">
+          <div className="homepage card">
+            <h1>Welcome to Jobly</h1>
+            <p>A place for all your jobs!</p>
+            <UserContext.Consumer>
+              {currentUser => (
+                <div className="Home">
+                  {currentUser
+                    ? <h2>Welcome Back {currentUser.user.first_name}!</h2>
+                    : <Link to="/login">Log in</Link>
+                  }
+                </div>
+              )}
+            </UserContext.Consumer>
           </div>
         </div>
       </div>

@@ -53,8 +53,6 @@ class CompanyProfile extends Component {
   render() {
     if (this.state.loading) return <React.Fragment>Loading...</React.Fragment>
 
-    const jobList = this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} checkApplied={this.checkApplied} handleApply={this.props.addJob} apply={this.apply}/>)
-
     return (
       <React.Fragment>
         <h2>{this.state.company.name}</h2>

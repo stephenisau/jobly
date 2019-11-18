@@ -57,6 +57,7 @@ class App extends Component {
 
   render() {
     return (
+      <div className="App">
         <UserContext.Provider value={this.state.currentUser}>
           <BrowserRouter>
             <NavBar
@@ -72,6 +73,7 @@ class App extends Component {
               addUser={this.addUser} />
           </BrowserRouter>
         </UserContext.Provider>
+      </div>
     );
   }
 }
