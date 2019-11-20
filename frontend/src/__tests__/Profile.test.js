@@ -3,7 +3,8 @@ import { mount, shallow } from 'enzyme';
 import Profile from '../NavBar/Profile';
 
 it('renders without crashing', function () {
-  shallow(<Profile />)
+  const wrapper = shallow(<Profile />);
+  // wrapper.setProps({currentUser: })
 });
 
 // it('renders form correctly', () => {

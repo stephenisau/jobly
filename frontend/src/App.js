@@ -60,9 +60,9 @@ class App extends Component {
       <div className="App">
         <UserContext.Provider value={this.state.currentUser}>
           <BrowserRouter>
-            <NavBar
-              loaded={this.state.loaded}
-              handleLogout={this.handleLogout} />
+              <NavBar
+                loaded={this.state.loaded}
+                handleLogout={this.handleLogout} />
             <Routes
               handleLogout={this.handleLogout}
               currentUser={this.state.currentUser}

@@ -1,3 +1,5 @@
-#home-container {
-    margin-top: 15%;
-} 
+.homepage-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
