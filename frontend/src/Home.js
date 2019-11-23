@@ -7,23 +7,21 @@ class Home extends Component {
 
   render() {
     return (
-      <div id="home-container">
-          <div className="homepage-container">
-            <div className="homepage card">
-              <h1>Welcome to Jobly</h1>
-              <p>A place for all your jobs!</p>
-              <UserContext.Consumer>
-                {currentUser => (
-                  <div className="Home">
-                    {currentUser
-                      ? <h2>Welcome Back {currentUser.user.first_name}!</h2>
-                      : <Link to="/login">Log in</Link>
-                    }
-                  </div>
-                )}
-              </UserContext.Consumer>
-            </div>
-          </div>
+      <div className="Home">
+        <div className="container text-center card" id="homecard">
+          <h1 className="mb-4 font-weight-bold">Jobly</h1>
+          <p className="lead">All the jobs in one, convenient place.</p>
+          <UserContext.Consumer>
+            {currentUser => (
+              <React.Fragment>
+                {currentUser
+                  ? <h2>Welcome Back {currentUser.user.first_name}!</h2>
+                  : <Link className="btn btn-primary mx-auto" id="home-login" to="/login">Log in</Link>
+                }
+              </React.Fragment>
+            )}
+          </UserContext.Consumer>
+        </div>
       </div>
     );
   }

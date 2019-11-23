@@ -5,13 +5,10 @@
     justify-content: center;
 }
 
+#cardform {
+    margin: 0, 20vw;
+}
+
 .login-form {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-    background-color: white;
-    background-image: url("../assets/images/bg_picture.jpeg"); */
+    
 }

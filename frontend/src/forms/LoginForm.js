@@ -23,27 +23,32 @@ class LoginForm extends Component {
   }
   render() {
     return (
-      <div className="card-body">
-        <form onSubmit={this.handleSubmit}>
-          <label>Username</label>
-          <input 
-            name="username"
-            value={this.state.username}
-            placeholder="Username"
-            onChange={this.handleChange}
-            className="form-control"
-            type="text" />
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            placeholder="Password"
-            onChange={this.handleChange}
-            className="form-control" />
-          <button className="btn btn-primary mt-2" type="submit">Submit</button>
-        </form>
-   
+      <div className="card">
+        <div className="card-body">
+          <form onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label>Username</label>
+              <input
+                name="username"
+                value={this.state.username}
+                placeholder="Username"
+                onChange={this.handleChange}
+                className="form-control"
+                type="text" />
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                value={this.state.password}
+                placeholder="Password"
+                onChange={this.handleChange}
+                className="form-control" />
+            </div>
+            <button className="btn btn-primary mt-2" type="submit">Submit</button>
+          </form>
+        </div>
       </div>
     );
   }
