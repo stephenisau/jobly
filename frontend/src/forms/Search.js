@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { debounce } from "lodash";
 class Search extends Component {
   constructor(props) {
     super(props)
@@ -10,11 +10,11 @@ class Search extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(evt) {
+  handleChange = debounce((evt) => {
     this.setState({ 
       [evt.target.name]: evt.target.value 
     });
-  }
+  }, 4000);
 
   async handleSubmit(evt) {
     evt.preventDefault()
