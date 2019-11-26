@@ -50,7 +50,7 @@ class Login extends Component {
     return (
       <div id="login-form">
         <div className="container my-4 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-          <div className="d-flex justify-content-end">
+          <div className="justify-content-end">
             <div className="btn-group">
               <div className="mt-4 mb-1">
                 <button className={this.state.login ? "btn btn-primary mr-1 active" : "btn btn-primary mr-1"} onClick={this.signInChange}>Sign In</button>

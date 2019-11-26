@@ -37,12 +37,19 @@ class CompanyDisplay extends Component {
 
 
   render() {
-    const companies = this.state.companies.length ? this.state.companies.map(company => 
+    const companies = this.state.companies.length ? this.state.companies.map(company =>
       <CompanyCard company={company} key={company.handle} />) : "Sorry, no results"
     return (
-      <div>
-      <Search search={this.search}/>
-      {companies}
+      <div className="container">
+        <div className="row justify-content-center align-items-center">
+          <div className="col-8 offset-md-2">
+            <h1 className="text-center">
+              <b>Companies</b>
+            </h1>
+            <Search search={this.search} />
+            {companies}
+          </div>
+        </div>
       </div>
     );
   }

@@ -48,62 +48,70 @@ class Profile extends Component {
     ))
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="_username">Username</label>
-            <p>{this.state._username}</p>
+        <div className="row justify-content-center">
+          <div className="col-8">
+            <div className="card">
+              <div className="card-body">
+                <form onSubmit={this.handleSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="_username"><b>Username:</b> {this.state._username}</label>
+
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="first_name">First name</label>
+                    <input
+                      onChange={this.handleChange}
+                      name="first_name"
+                      value={this.state.first_name}
+                      type="text"
+                      className="form-control"
+                      id="first_name"
+                      placeholder="first_name" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="last_name">Last name</label>
+                    <input
+                      onChange={this.handleChange}
+                      name="last_name"
+                      value={this.state.last_name}
+                      type="text"
+                      className="form-control"
+                      id="last_name"
+                      placeholder="last_name" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">Email address</label>
+                    <input
+                      onChange={this.handleChange}
+                      name="email"
+                      value={this.state.email}
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email" />
+                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      onChange={this.handleChange}
+                      name="password"
+                      value={this.state.password}
+                      type="password"
+                      className="form-control"
+                      id="password"
+                      placeholder="Password" />
+                  </div>
+                  <button type="submit" className="btn btn-primary">Save Changes</button>
+                </form>
+              </div>
+            </div>
           </div>
-          <div className="form-group">
-            <label htmlFor="first_name">First name</label>
-            <input 
-              onChange={this.handleChange} 
-              name="first_name" 
-              value={this.state.first_name} 
-              type="text" 
-              className="form-control" 
-              id="first_name" 
-              placeholder="first_name" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="last_name">Last name</label>
-            <input 
-              onChange={this.handleChange} 
-              name="last_name" 
-              value={this.state.last_name} 
-              type="text" 
-              className="form-control" 
-              id="last_name" 
-              placeholder="last_name" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email address</label>
-            <input 
-              onChange={this.handleChange} 
-              name="email" 
-              value={this.state.email} 
-              type="email" 
-              className="form-control" 
-              id="email" 
-              aria-describedby="emailHelp" 
-              placeholder="Enter email" />
-            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input 
-              onChange={this.handleChange} 
-              name="password" 
-              value={this.state.password} 
-              type="password" 
-              className="form-control" 
-              id="password" 
-              placeholder="Password" />
-          </div>
-          <button type="submit" className="btn btn-primary">Save Changes</button>
-        </form>
-        <br/>
+        </div>
+        <br />
         <h1>Jobs Applied</h1>
-          {jobList}
+        {jobList}
       </div>
     );
   }

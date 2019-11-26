@@ -39,13 +39,13 @@ class JobDisplay extends Component {
   }
 
   async apply(job) {
-    let idx = job.id - 1;
-    let jobId = this.state.jobs[idx].id;
+    let jobId = this.state.jobs.findIndex(j => j.id === job.id)
+    debugger
     this.props.handleApply(job)
-    let message = await JoblyApi.applyToJob(jobId);
+    let message = await JoblyApi.applyToJob(job.id);
     this.setState(st => ({
-      jobs: st.jobs.map(job =>
-        job.id === jobId
+      jobs: st.jobs.map((job, id) =>
+        id === jobId
           ? { ...job, state: message }
           : job)
     }));
@@ -54,9 +54,13 @@ class JobDisplay extends Component {
   render() {
     if (!this.props.currentUser) return <React.Fragment>Loading...</React.Fragment>
     return (
-      <div>
-        <Search search={this.search} />
-        <JobList jobs={this.state.jobs} checkApplied={this.checkApplied} handleApply={this.props.handleApply} apply={this.apply}/>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-8">
+            <Search search={this.search} />
+            <JobList jobs={this.state.jobs} checkApplied={this.checkApplied} handleApply={this.props.handleApply} apply={this.apply} />
+          </div>
+        </div>
       </div>
     );
   }
