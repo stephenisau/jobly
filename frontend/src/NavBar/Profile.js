@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
 import Alert from '../Forms/Alert';
-import JobCard from "../Jobs/JobCard";
+import "./Profile.css";
 
 class Profile extends Component {
   constructor(props) {
@@ -43,75 +43,65 @@ class Profile extends Component {
 
   render() {
     if (this.state._submitted) return <Alert color='success' message={`User updated successfully.`} />
-    const jobList = this.props.currentUser.user.jobs.map((job, idx) => (
-      <JobCard key={idx} job={job} handleApply={this.props.handleApply} apply={this.props.apply} checkApplied={this.props.checkApplied} />
-    ))
     return (
       <div className="container">
-        <div className="row justify-content-center">
+        <div className="row justify-content-center mt-5">
           <div className="col-8">
-            <div className="card">
-              <div className="card-body">
-                <form onSubmit={this.handleSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="_username"><b>Username:</b> {this.state._username}</label>
+            <form onSubmit={this.handleSubmit} id="profile-form">
+              <div className="form-group">
+                <label htmlFor="_username"><b>Username:</b> {this.state._username}</label>
 
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="first_name">First name</label>
-                    <input
-                      onChange={this.handleChange}
-                      name="first_name"
-                      value={this.state.first_name}
-                      type="text"
-                      className="form-control"
-                      id="first_name"
-                      placeholder="first_name" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="last_name">Last name</label>
-                    <input
-                      onChange={this.handleChange}
-                      name="last_name"
-                      value={this.state.last_name}
-                      type="text"
-                      className="form-control"
-                      id="last_name"
-                      placeholder="last_name" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email address</label>
-                    <input
-                      onChange={this.handleChange}
-                      name="email"
-                      value={this.state.email}
-                      type="email"
-                      className="form-control"
-                      id="email"
-                      aria-describedby="emailHelp"
-                      placeholder="Enter email" />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                      onChange={this.handleChange}
-                      name="password"
-                      value={this.state.password}
-                      type="password"
-                      className="form-control"
-                      id="password"
-                      placeholder="Password" />
-                  </div>
-                  <button type="submit" className="btn btn-primary">Save Changes</button>
-                </form>
               </div>
-            </div>
+              <div className="form-group">
+                <label htmlFor="first_name">First name</label>
+                <input
+                  onChange={this.handleChange}
+                  name="first_name"
+                  value={this.state.first_name}
+                  type="text"
+                  className="form-control"
+                  id="first_name"
+                  placeholder="first_name" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="last_name">Last name</label>
+                <input
+                  onChange={this.handleChange}
+                  name="last_name"
+                  value={this.state.last_name}
+                  type="text"
+                  className="form-control"
+                  id="last_name"
+                  placeholder="last_name" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email address</label>
+                <input
+                  onChange={this.handleChange}
+                  name="email"
+                  value={this.state.email}
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter email" />
+                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  onChange={this.handleChange}
+                  name="password"
+                  value={this.state.password}
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  placeholder="Password" />
+              </div>
+              <button type="submit" className="btn btn-primary">Save Changes</button>
+            </form>
           </div>
         </div>
-        <br />
-        <h1>Jobs Applied</h1>
-        {jobList}
       </div>
     );
   }
