@@ -12,7 +12,6 @@ class JobDisplay extends Component {
     };
     this.search = this.search.bind(this);
     this.apply = this.apply.bind(this);
-    this.checkApplied = this.checkApplied.bind(this);
   }
 
   async componentDidMount() {
@@ -30,17 +29,8 @@ class JobDisplay extends Component {
     this.setState({ jobs });
   }
 
-  checkApplied(id) {
-    if (this.props.currentUser.user.jobs.filter(job => job.id === id).length > 0) {
-      return true
-    } else {
-      return false;
-    }
-  }
-
   async apply(job) {
     let jobId = this.state.jobs.findIndex(j => j.id === job.id)
-    debugger
     this.props.handleApply(job)
     let message = await JoblyApi.applyToJob(job.id);
     this.setState(st => ({
@@ -58,7 +48,7 @@ class JobDisplay extends Component {
         <div className="row justify-content-center">
           <div className="col-8">
             <Search search={this.search} />
-            <JobList jobs={this.state.jobs} checkApplied={this.checkApplied} handleApply={this.props.handleApply} apply={this.apply} />
+            <JobList jobs={this.state.jobs} apply={this.apply} />
           </div>
         </div>
       </div>

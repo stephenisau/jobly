@@ -7,14 +7,14 @@ class Search extends Component {
       search: ""
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = debounce(this.handleSubmit.bind(this), 500);
   }
 
-  handleChange = debounce((evt) => {
+  handleChange = (evt) => {
     this.setState({ 
       [evt.target.name]: evt.target.value 
     });
-  }, 4000);
+  };
 
   async handleSubmit(evt) {
     evt.preventDefault()

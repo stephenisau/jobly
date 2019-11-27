@@ -13,7 +13,6 @@ class CompanyProfile extends Component {
       loading: true,
       company: null
     }
-    this.checkApplied = this.checkApplied.bind(this);
     this.apply = this.apply.bind(this);
   }
 
@@ -27,14 +26,6 @@ class CompanyProfile extends Component {
       company: { ...company },
       loading: false
     }));
-  }
-
-  checkApplied(id) {
-    if (this.state.currentUser.user.jobs.filter(job => job.id === id).length > 0) {
-      return true
-    } else {
-      return false;
-    }
   }
 
   async apply(job) {
@@ -57,7 +48,7 @@ class CompanyProfile extends Component {
       <React.Fragment>
         <h2>{this.state.company.name}</h2>
         <p>{this.state.company.description}</p>
-        {this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} checkApplied={this.checkApplied} handleApply={this.props.addJob} apply={this.apply}/>)}
+        {this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} handleApply={this.props.addJob} apply={this.apply}/>)}
       </React.Fragment>
 
     );
