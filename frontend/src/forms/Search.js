@@ -34,7 +34,6 @@ class Search extends Component {
             placeholder="Search" 
             aria-label="Search"
             type="search"/>
-          {/* <button className="btn btn-primary" type="submit">Submit</button> */}
         </form>
       </div>
     );
