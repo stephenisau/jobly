@@ -25,6 +25,7 @@ class JobDisplay extends Component {
     let response = {};
     response['_token'] = localStorage.getItem('_token');
     response['search'] = query;
+    console.log("searching!")
     let jobs = await JoblyApi.getJobs(response);
     this.setState({ jobs });
   }

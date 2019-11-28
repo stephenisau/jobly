@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { debounce } from "lodash";
+
 class Search extends Component {
   constructor(props) {
     super(props)
@@ -7,7 +8,7 @@ class Search extends Component {
       search: ""
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = debounce(this.handleSubmit.bind(this), 500);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = (evt) => {
@@ -16,15 +17,16 @@ class Search extends Component {
     });
   };
 
-  async handleSubmit(evt) {
+  handleSubmit = debounce((evt) => {
     evt.preventDefault()
-    await this.props.search(this.state.search);
-  }
+    const { search } = this.state;
+    this.props.search(search);
+  }, 500);
 
   render() {
     return (
       <div className="md-form mt-0">
-        <form onSubmit={this.handleSubmit}>
+        <form onChange={this.handleSubmit}>
           <input name="search" 
             id="searchbar"
             value={this.state.search} 
@@ -32,7 +34,7 @@ class Search extends Component {
             placeholder="Search" 
             aria-label="Search"
             type="search"/>
-          <button className="btn btn-primary" type="submit">Submit</button>
+          {/* <button className="btn btn-primary" type="submit">Submit</button> */}
         </form>
       </div>
     );
