@@ -1,7 +1,7 @@
 # React Jobly
 
-This is a basic full-stack application for a job board. 
-The backend is built with node express and the frontend is built with React.
+Jobly is a full-stack application based on indeed.com 
+The backend is built with node express and the frontend is built with React using a PostgreSQL database.
 
 ## Setup
 
