@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { debounce } from "lodash";
+import "./Search.css";
 
 class Search extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="md-form mt-0">
+      <div className="md-form mt-2">
         <form onChange={this.handleSubmit}>
           <input name="search" 
             id="searchbar"
