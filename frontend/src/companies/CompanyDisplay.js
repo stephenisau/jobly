@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CompanyCard from './CompanyCard';
 import JoblyApi from '../JoblyApi'
-import Search from '../Forms/Search';
+import Search from '../forms/Search';
 
 class CompanyDisplay extends Component {
 

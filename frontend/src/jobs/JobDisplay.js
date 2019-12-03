@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import JobList from "./JobList";
-import Search from "../Forms/Search";
+import Search from "../forms/Search";
 import JoblyApi from "../JoblyApi";
 import UserContext from "../UserContext";
 

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from 'react-router-dom';
-import CompanyDisplay from '../Companies/CompanyDisplay';
-import CompanyProfile from '../Companies/CompanyProfile'
-import Profile from '../NavBar/Profile';
+import CompanyDisplay from '../companies/CompanyDisplay';
+import CompanyProfile from '../companies/CompanyProfile'
+import Profile from '../navbar/Profile';
 import Home from '../Home';
-import Login from '../Forms/Login';
+import Login from '../forms/Login';
 import PrivateRoute from './PrivateRoute';
-import RegisterForm from "../Forms/RegisterForm";
-import JobDisplay from "../Jobs/JobDisplay";
+import RegisterForm from "../forms/RegisterForm";
+import JobDisplay from "../jobs/JobDisplay";
 
 class Routes extends Component {
   render() {
