@@ -46,9 +46,15 @@ class CompanyProfile extends Component {
 
     return (
       <React.Fragment>
-        <h2>{this.state.company.name}</h2>
-        <p>{this.state.company.description}</p>
-        {this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} handleApply={this.props.addJob} apply={this.apply}/>)}
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-8">
+              <h2>{this.state.company.name}</h2>
+              <p>{this.state.company.description}</p>
+              {this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} handleApply={this.props.addJob} apply={this.apply} />)}
+            </div>
+          </div>
+        </div>
       </React.Fragment>
 
     );
