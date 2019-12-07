@@ -48,9 +48,9 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="mt-4" id="Login">
+      <div id="Login">
         <div className="container my-4 col-md-8">
-          <div className="text-center login">
+          <div className="login">
             <div className="btn-group">
               <div className="mt-4 mb-1">
                 <button className={this.state.login ? "btn btn-primary mr-1 active" : "btn btn-primary mr-1"} onClick={this.signInChange}>Sign In</button>

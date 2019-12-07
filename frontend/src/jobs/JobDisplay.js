@@ -48,6 +48,7 @@ class JobDisplay extends Component {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-8">
+            <h1>Jobs</h1>
             <Search search={this.search} />
             <JobList jobs={this.state.jobs} apply={this.apply} />
           </div>

@@ -1,8 +1,5 @@
 .App {
-  text-align: center;
-  background-image: url("./assets/images/jobly_bg.jpeg");
-  min-height: 100vh;
-  background-color: #630045;
+
 }
 
 .App-logo {
@@ -53,8 +50,3 @@ html {
   }
 }
 
-#container-fluid {
-  background-image: url("./assets/images/bg_picture.jpeg");
-  height: 100%;
-  width: 100%;
-}

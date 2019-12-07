@@ -32,7 +32,7 @@ class Search extends Component {
             id="searchbar"
             value={this.state.search} 
             onChange={this.handleChange} 
-            placeholder="Search" 
+            placeholder="Search Jobly here..." 
             aria-label="Search"
             type="search"/>
         </form>

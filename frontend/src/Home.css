@@ -1,7 +1,8 @@
 .Home {
-    height: calc(100vh - 250px);
+    height: calc(100vh - 150px);
     display: flex;
     align-items: center;
+    background-size: cover;
 }
 
 #homecard {
