@@ -1,5 +1,13 @@
 .App {
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto
+}
 
+.bg-pic {
+  background-image: url("./assets/images/jobly_bg.jpeg");
+  background-size: cover;
 }
 
 .App-logo {
@@ -30,6 +38,7 @@ html {
   width: 64px;
   height: 64px;
 }
+
 .lds-dual-ring:after {
   content: " ";
   display: block;
@@ -41,12 +50,13 @@ html {
   border-color: #fff transparent #fff transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
-

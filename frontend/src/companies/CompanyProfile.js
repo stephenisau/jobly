@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
 import CompanyJobCard from "./CompanyJobCard";
 import { withRouter } from "react-router";
+import "./CompanyProfile.css";
 
 import jwt from "jsonwebtoken";
 
@@ -46,12 +47,14 @@ class CompanyProfile extends Component {
 
     return (
       <React.Fragment>
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-8">
-              <h2>{this.state.company.name}</h2>
-              <p>{this.state.company.description}</p>
-              {this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} handleApply={this.props.addJob} apply={this.apply} />)}
+        <div id="company-profile">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-8">
+                <h2>{this.state.company.name}</h2>
+                <p>{this.state.company.description}</p>
+                {this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} handleApply={this.props.addJob} apply={this.apply} />)}
+              </div>
             </div>
           </div>
         </div>

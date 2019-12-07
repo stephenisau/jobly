@@ -16,7 +16,10 @@ class Home extends Component {
               {currentUser => (
                 <React.Fragment>
                   {currentUser
-                    ? <h2>Welcome Back {currentUser.user.first_name}!</h2>
+                    ? (
+                    <React.Fragment>
+                      <h2>Welcome Back {currentUser.user.first_name}!</h2>
+                    </React.Fragment>)
                     : <Link className="btn btn-primary mx-auto" id="home-login" to="/login">Log in</Link>
                   }
                 </React.Fragment>

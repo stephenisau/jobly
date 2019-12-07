@@ -3,6 +3,7 @@ import JobList from "./JobList";
 import Search from "../forms/Search";
 import JoblyApi from "../JoblyApi";
 import UserContext from "../UserContext";
+import "./JoblyDisplay.css"
 
 class JobDisplay extends Component {
   constructor(props) {
@@ -45,12 +46,16 @@ class JobDisplay extends Component {
   render() {
     if (!this.props.currentUser) return <React.Fragment>Loading...</React.Fragment>
     return (
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-8">
-            <h1>Jobs</h1>
-            <Search search={this.search} />
-            <JobList jobs={this.state.jobs} apply={this.apply} />
+      <div id="Job-display">
+        <div className="container job-display">
+          <div className="row justify-content-center">
+            <div className="col-8 text-center">
+              <h1>
+                <b>Jobs</b>
+              </h1>
+              <Search search={this.search} />
+              <JobList jobs={this.state.jobs} apply={this.apply} />
+            </div>
           </div>
         </div>
       </div>

@@ -14,8 +14,10 @@ class CompanyJobCard extends Component {
     const { job } = this.props;
     return (
       <div className="Card card mt-3">
+        <div className="card-header">
+          <h6 className="card-title">{job.title}</h6>
+        </div>
         <div className="card-body">
-          <h6>{job.title}</h6>
           <p>Salary: {job.salary}</p>
           <p>Equity: {job.equity}</p>
         </div>

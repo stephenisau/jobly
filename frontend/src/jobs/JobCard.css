@@ -5,3 +5,7 @@
     opacity: 90%;
     min-height: 250px;
 }
+
+.job-card {
+    text-align: center;
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CompanyCard from './CompanyCard';
 import JoblyApi from '../JoblyApi'
 import Search from '../forms/Search';
+import "./CompanyDisplay.css";
 
 class CompanyDisplay extends Component {
 
@@ -40,14 +41,16 @@ class CompanyDisplay extends Component {
     const companies = this.state.companies.length ? this.state.companies.map(company =>
       <CompanyCard company={company} key={company.handle} />) : "Sorry, no results"
     return (
-      <div className="container">
-        <div className="row justify-content-center align-items-center">
-          <div className="col-8 offset-md-2">
-            <h1 className="text-center">
-              <b>Companies</b>
-            </h1>
-            <Search search={this.search} />
-            {companies}
+      <div id="company-display">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-8">
+              <h1 className="text-center">
+                <b>Companies</b>
+              </h1>
+              <Search search={this.search} />
+              {companies}
+            </div>
           </div>
         </div>
       </div>
