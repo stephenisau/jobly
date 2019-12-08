@@ -3,67 +3,71 @@
 Jobly is a full-stack application based on indeed.com 
 The backend is built with node express and the frontend is built with React using a PostgreSQL database.
 
+Jobly is live [here](https://jobly-app-frontend.herokuapp.com/)
+
+# Table of Contents
+- [Screenshots](#screenshots)
+- [Installation](#installation)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Features to add](#features-to-add)
+
 ## Setup
 
-Go into the backend server and type this following command:
+This application has a separate backend and frontend. Below are instructions on how to install and start each server.
+### Backend
+cd into /backend and type these following commands:
 
 ```
 npm install
 node server.js
 ```
+The backend should now be starting on `http://localhost:3001/`
 
-The backend should now be starting on `http://localhost:3000/`
-
-Now go into the frontend directory and run these following commands:
+### Frontend
+cd into /frontend from the root directory and type the following commands:
 
 ```
 npm install
 npm start
 ```
+The frontend should now be starting on `http://localhost:3000/`
+
+## Screenshots
+
+<!-- ![Alt text](/frontend/public/images/jobly-home.png?raw=true "Home")
+![Alt text](/frontend/public/images/jobly-companies.png?raw=true "Companies")
+![Alt text](/frontend/public/images/jobly-company.png?raw=true "Single company and its' jobs")
+![Alt text](/frontend/public/images/jobly-jobs.png?raw=true "Jobs")
+![Alt text](/frontend/public/images/jobly-jobs-filtered.png?raw=true "Jobs filtered by salary and text simultaneously") -->
 
 
-## Code example
+## Features
 
-The front-end is built using a simple react application with class-based components. To avoid prop-drilling down multiple components, we used React Context. 
+- User authentication and authorization
+- Debounce live-search
+- Apply to jobs
+- Edit profile
+
+## Technologies
+
+- React
+- Axios
+- Bootstrap
+- Node / Express 
+- PostgreSQL
+- Bcrypt
+
+## Testing 
+
+Front end unit tests are written with Enzyme. Run the tests with the following commands: 
 
 ```
-import React from 'react';
-const CurrentUser = React.createContext();
-
-export default CurrentUser;
+cd frontend
+npm test
 ```
 
+## Features to add
 
-We also displayed multiple forms in one component. This is the code that accomplished this, it's a simple ternary operator that displays different forms.
-
-```
-    let form = this.state.signOrReg ?
-      <LoginForm signIn={this.handleSignIn} /> : <RegisterForm register={this.handleRegister} />
-```
-
-Which was then added as a form here:
-```
-    return (
-      <div className="container">
-        <div className="mt-4 mb-1">
-          <button className={this.state.signOrReg ? "btn btn-primary mr-1 active" : "btn btn-primary mr-1"} onClick={this.signUpChange}>Sign In</button>
-          <button className={this.state.signOrReg ? "btn btn-primary ml-1" : "btn btn-primary ml-1 active"} onClick={this.registerChange}>Register</button>
-        </div>
-        <div className="card">
-          {form}
-        </div>
-      </div>
-    );
-```
-
-## Tests
-
-No tests are written to this point. 
-
-## Todos
-
-- [ ] Create tests
-- [ ] Refactor Class components with Hook components
-- [ ] Reconfigure file hierarchy
-- [ ] Add apply functionality
-
+- Infinite scrolling
+- Autocomplete search
