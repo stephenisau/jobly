@@ -3,8 +3,6 @@
     display: flex;
     align-items: center;
     text-align: center;
-    background-image: url("../assets/images/jobly_bg.jpeg");
-    background-size: cover;
     min-height: 100vh;
 }
 
