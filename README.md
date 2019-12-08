@@ -71,3 +71,6 @@ npm test
 
 - Infinite scrolling
 - Autocomplete search
+- Add animated SVG's to home-card
+- Add navlink for applied jobs
+- Flush out front-end tests
