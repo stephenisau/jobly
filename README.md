@@ -73,4 +73,6 @@ npm test
 - Autocomplete search
 - Add animated SVG's to home-card
 - Add navlink for applied jobs
+- Add ability to add Company
+- Add ability to add Jobs
 - Flush out front-end tests
