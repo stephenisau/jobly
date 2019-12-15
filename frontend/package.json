@@ -8,11 +8,13 @@
     "@fortawesome/react-fontawesome": "^0.1.7",
     "axios": "^0.19.0",
     "babel-preset-react-app": "^7.0.0",
+    "enzyme-to-json": "^3.4.3",
     "jsonwebtoken": "^8.5.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.1.0",
     "react-scripts": "3.1.2",
+    "trie-search": "^1.2.11",
     "uuid": "^3.3.3"
   },
   "scripts": {

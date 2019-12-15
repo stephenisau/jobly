@@ -1,6 +1,7 @@
 import React from "react";
 import { mount, shallow } from 'enzyme';
-import Home from '../Home';
+import toJson from 'enzyme-to-json';
+import Home from './Home';
 
 it('renders without crashing', function() {
   shallow(<Home />);

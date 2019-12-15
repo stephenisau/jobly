@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import JoblyApi from '../JoblyApi';
-import CompanyJobCard from "./CompanyJobCard";
+import JobCard from "../jobs/JobCard";
 import { withRouter } from "react-router";
 import "./CompanyProfile.css";
 
@@ -49,11 +49,13 @@ class CompanyProfile extends Component {
       <React.Fragment>
         <div id="company-profile">
           <div className="container">
-            <div className="row justify-content-center">
+            <div className="row justify-content-center text-center">
               <div className="col-8">
-                <h2>{this.state.company.name}</h2>
-                <p>{this.state.company.description}</p>
-                {this.state.jobs.map((job, id) => <CompanyJobCard key={id} job={job} handleApply={this.props.addJob} apply={this.apply} />)}
+                <div className="title">
+                  <h2><b>{this.state.company.name}</b></h2>
+                  <p>{this.state.company.description}</p>
+                </div>
+                {this.state.jobs.map((job, id) => <JobCard key={id} job={job} handleApply={this.props.addJob} apply={this.apply} />)}
               </div>
             </div>
           </div>

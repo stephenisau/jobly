@@ -2,12 +2,14 @@
   padding-right: 0;
   padding-left: 0;
   margin-right: auto;
-  margin-left: auto
+  margin-left: auto;
+  background-image: url("./assets/images/jobly_bg.jpeg");
+  position: fixed;
+  min-height: 100vh;
 }
 
 .bg-pic {
-  background-image: url("./assets/images/jobly_bg.jpeg");
-  background-size: cover;
+  /* background-size: cover; */
 }
 
 .App-logo {

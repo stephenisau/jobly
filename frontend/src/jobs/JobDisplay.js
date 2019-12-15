@@ -4,12 +4,15 @@ import Search from "../forms/Search";
 import JoblyApi from "../JoblyApi";
 import UserContext from "../UserContext";
 import "./JoblyDisplay.css"
+var TrieSearch = require('trie-search');
+
 
 class JobDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jobs: []
+      jobs: [],
+      jobDisplay: []
     };
     this.search = this.search.bind(this);
     this.apply = this.apply.bind(this);
@@ -26,8 +29,13 @@ class JobDisplay extends Component {
     let response = {};
     response['_token'] = localStorage.getItem('_token');
     response['search'] = query;
-    console.log("searching!")
+    // var ts = new TrieSearch('title');
     let jobs = await JoblyApi.getJobs(response);
+    // ts.addAll(jobs)
+    // ts.get(query);
+    // debugger;
+    // ts.addFromObject(jobs);
+    // ts.get(query)
     this.setState({ jobs });
   }
 

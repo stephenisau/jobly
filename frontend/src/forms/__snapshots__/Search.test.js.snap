@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="md-form mt-2"
+>
+  <form
+    onChange={[Function]}
+  >
+    <input
+      aria-label="Search"
+      id="searchbar"
+      name="search"
+      onChange={[Function]}
+      placeholder="Search Jobly here..."
+      type="search"
+      value=""
+    />
+  </form>
+</div>
+`;

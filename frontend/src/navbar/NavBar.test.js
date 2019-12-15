@@ -1,14 +1,14 @@
 import React from "react";
-import {shallow, mount} from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import Search from "../Forms/Search";
+import NavBar from '../NavBar/NavBar';
 
 it('renders without crashing', function() {
-  shallow(<Search/>);
+  shallow(<NavBar/>);
 });
 
 it('matches snapshot', function() {
-  let wrapper = shallow(<Search/>);
+  let wrapper = shallow(<NavBar/>);
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
 });

@@ -15,7 +15,7 @@ class JobCard extends React.PureComponent {
   render() {
     const { job } = this.props;
     return (
-      <div className="Card card mt-3">
+      <div className="Card card">
         <div className="card-body job-card">
           <h6>{job.title}</h6>
           <p>Salary: {job.salary}</p>

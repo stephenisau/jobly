@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="row justify-content-center mt-5"
+  >
+    <div
+      className="col-8"
+    >
+      <form
+        id="profile-form"
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="_username"
+          >
+            <b>
+              Username:
+            </b>
+             
+          </label>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="first_name"
+          >
+            First name
+          </label>
+          <input
+            className="form-control"
+            id="first_name"
+            name="first_name"
+            onChange={[Function]}
+            placeholder="first_name"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="last_name"
+          >
+            Last name
+          </label>
+          <input
+            className="form-control"
+            id="last_name"
+            name="last_name"
+            onChange={[Function]}
+            placeholder="last_name"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="email"
+          >
+            Email address
+          </label>
+          <input
+            aria-describedby="emailHelp"
+            className="form-control"
+            id="email"
+            name="email"
+            onChange={[Function]}
+            placeholder="Enter email"
+            type="email"
+            value=""
+          />
+          <small
+            className="form-text text-muted"
+            id="emailHelp"
+          >
+            We'll never share your email with anyone else.
+          </small>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            className="form-control"
+            id="password"
+            name="password"
+            onChange={[Function]}
+            placeholder="Password"
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          className="btn btn-primary"
+          type="submit"
+        >
+          Save Changes
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
