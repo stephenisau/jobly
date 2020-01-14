@@ -4,6 +4,11 @@ import JoblyApi from '../JoblyApi'
 import Search from '../forms/Search';
 import "./CompanyDisplay.css";
 
+
+/*
+  Container component whos main purpose is to fetch data from the API and manage state.
+*/
+
 class CompanyDisplay extends Component {
 
   static defaultProps = {
@@ -45,7 +50,7 @@ class CompanyDisplay extends Component {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-8">
-              <h1 className="text-center">
+              <h1 className="text-center company-title">
                 <b>Companies</b>
               </h1>
               <Search search={this.search} />

@@ -17,9 +17,9 @@ class Home extends Component {
                 <React.Fragment>
                   {currentUser
                     ? (
-                    <React.Fragment>
-                      <h2>Welcome Back {currentUser.user.first_name}!</h2>
-                    </React.Fragment>)
+                      <React.Fragment>
+                        <h2>Welcome Back {currentUser.user.first_name}!</h2>
+                      </React.Fragment>)
                     : <Link className="btn btn-primary mx-auto" id="home-login" to="/login">Log in</Link>
                   }
                 </React.Fragment>
@@ -27,7 +27,7 @@ class Home extends Component {
             </UserContext.Consumer>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

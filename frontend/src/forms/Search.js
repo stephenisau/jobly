@@ -28,7 +28,9 @@ class Search extends Component {
     return (
       <div className="md-form mt-2">
         <form onChange={this.handleSubmit}>
-          <input name="search" 
+          <input 
+            name="search" 
+            autoComplete="off"
             id="searchbar"
             value={this.state.search} 
             onChange={this.handleChange} 

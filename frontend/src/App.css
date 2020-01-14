@@ -4,13 +4,9 @@
   margin-right: auto;
   margin-left: auto;
   background-image: url("./assets/images/jobly_bg.jpeg");
-  position: fixed;
   min-height: 100vh;
 }
 
-.bg-pic {
-  /* background-size: cover; */
-}
 
 .App-logo {
   height: 40vmin;
@@ -33,6 +29,10 @@
 
 html {
   height: 100%
+}
+
+input {
+  width: 100%;
 }
 
 .lds-dual-ring {
@@ -62,3 +62,4 @@ html {
     transform: rotate(360deg);
   }
 }
+

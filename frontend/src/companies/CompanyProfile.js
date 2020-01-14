@@ -6,6 +6,12 @@ import "./CompanyProfile.css";
 
 import jwt from "jsonwebtoken";
 
+
+/*
+  Container component rendered by Routes. This components main purpose is to manage state for
+  companies and the associated jobs for each company.
+*/
+
 class CompanyProfile extends Component {
   constructor(props) {
     super(props)

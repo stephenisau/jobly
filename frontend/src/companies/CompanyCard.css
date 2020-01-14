@@ -5,11 +5,16 @@
     margin: auto;
 }
 
+.logo {
+    justify-items: center;
+}
+
 .Card {
     border: 1px solid;
     padding: 10px;
     box-shadow: 5px 10px 18px black;
     min-height: 250px;
+    opacity: 90%;
 }
 
 .card > a {
@@ -18,4 +23,8 @@
 .card-description {
     bottom: 3px;
     right: 3px
+}
+
+.company-description {
+    text-align: center;
 }

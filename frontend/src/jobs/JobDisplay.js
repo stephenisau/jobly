@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import JobList from "./JobList";
 import Search from "../forms/Search";
 import JoblyApi from "../JoblyApi";
-import UserContext from "../UserContext";
 import "./JoblyDisplay.css"
-var TrieSearch = require('trie-search');
 
 
 class JobDisplay extends Component {
@@ -12,7 +10,9 @@ class JobDisplay extends Component {
     super(props);
     this.state = {
       jobs: [],
-      jobDisplay: []
+      displayed: [],
+      start: 0,
+      end: 10
     };
     this.search = this.search.bind(this);
     this.apply = this.apply.bind(this);
@@ -23,19 +23,12 @@ class JobDisplay extends Component {
     this.setState({ jobs: result });
   }
 
-  static contextType = UserContext;
 
   async search(query) {
     let response = {};
     response['_token'] = localStorage.getItem('_token');
     response['search'] = query;
-    // var ts = new TrieSearch('title');
     let jobs = await JoblyApi.getJobs(response);
-    // ts.addAll(jobs)
-    // ts.get(query);
-    // debugger;
-    // ts.addFromObject(jobs);
-    // ts.get(query)
     this.setState({ jobs });
   }
 
@@ -59,7 +52,7 @@ class JobDisplay extends Component {
           <div className="row justify-content-center">
             <div className="col-8 text-center">
               <h1>
-                <b>Jobs</b>
+                <b className="job-title">Jobs</b>
               </h1>
               <Search search={this.search} />
               <JobList jobs={this.state.jobs} apply={this.apply} />
