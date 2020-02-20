@@ -21,7 +21,6 @@ class LoginForm extends Component {
       username,
       password
     });
-    debugger;
     this.props.signIn(this.state);
   }
 

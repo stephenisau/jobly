@@ -13,6 +13,7 @@ class RegisterForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
@@ -35,6 +36,7 @@ class RegisterForm extends Component {
             <div className="form-group">
               <label>Username</label>
               <input name="username"
+                id="username"
                 value={this.state.username}
                 placeholder="Username"
                 onChange={this.handleChange}
