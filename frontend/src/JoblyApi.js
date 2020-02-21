@@ -54,7 +54,6 @@ class JoblyApi {
   }
 
   static async login(data) {
-    debugger;
     let res = await this.request('login', data, 'post');
     return res;
   }
