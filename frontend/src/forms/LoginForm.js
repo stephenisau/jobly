@@ -21,7 +21,9 @@ class LoginForm extends Component {
       username,
       password
     });
-    this.props.signIn(this.state);
+    setTimeout(() => {
+      this.props.signIn(this.state);
+    }, 3000);
   }
 
   handleChange(evt) {

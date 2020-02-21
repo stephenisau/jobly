@@ -24,7 +24,6 @@ class JoblyApi {
       q = axios.patch(
         `${BASE_URL}/${endpoint}`, { _token, ...params });
     }
-
     try {
       return (await q).data;
     } catch (err) {
@@ -55,6 +54,7 @@ class JoblyApi {
   }
 
   static async login(data) {
+    debugger;
     let res = await this.request('login', data, 'post');
     return res;
   }
