@@ -11,7 +11,7 @@ class JoblyApi {
     let _token = localStorage.getItem("_token");
 
     console.debug("API Call:", endpoint, params, verb);
-
+    
     let q;
 
     if (verb === "get") {
