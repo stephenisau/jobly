@@ -19,7 +19,7 @@ class Search extends Component {
   };
 
   handleSubmit = debounce((evt) => {
-    evt.preventDefault()
+    evt.persist()
     const { search } = this.state;
     this.props.search(search);
   }, 500);

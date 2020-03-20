@@ -56,6 +56,7 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <div className={`App container-fluid ${this.state.currentUser ? '' : 'bg-pic'}`}>
         <UserContext.Provider value={this.state.currentUser}>
