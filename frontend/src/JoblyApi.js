@@ -2,6 +2,7 @@ import axios from 'axios';
 import jwt from "jsonwebtoken";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+console.log(BASE_URL)
 
 class JoblyApi {
   static async request(endpoint, params = {}, verb = "get") {
