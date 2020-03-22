@@ -14,6 +14,7 @@
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.1.0",
     "react-scripts": "3.1.2",
+    "react-test-renderer": "^16.13.1",
     "trie-search": "^1.2.11",
     "uuid": "^3.3.3"
   },

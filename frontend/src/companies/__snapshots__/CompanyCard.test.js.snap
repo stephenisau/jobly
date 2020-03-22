@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Company Card renders company card 1`] = `
+<div
+  className="card mt-2 Card"
+>
+  <a
+    href="/companies/random"
+    onClick={[Function]}
+  >
+    <div
+      className="card-body"
+    >
+      <div
+        className="logo"
+      >
+        <img
+          alt="Company"
+          className="company-logo"
+          src="https://png.pngtree.com/svg/20170307/c02483909c.svg"
+        />
+      </div>
+      <div
+        className="company-description"
+      >
+        <h3
+          className="card-title text-center"
+        >
+          testCompany
+        </h3>
+        <p
+          className="justify-content-end mb-2 card-description"
+        >
+          This is a test company
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
+`;
