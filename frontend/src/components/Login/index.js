@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import JoblyApi from '../JoblyApi';
+import JoblyApi from '../../JoblyApi';
 import "./Login.css";
-import LoginForm from './LoginForm'
-import RegisterForm from './RegisterForm'
+import LoginForm from '../Forms/LoginForm'
+import RegisterForm from '../Forms/RegisterForm'
 
 class Login extends Component {
   constructor(props) {

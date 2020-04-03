@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import CompanyDisplay from './CompanyDisplay';
+import CompanyDisplay from '.';
 
 
 const mockData = {

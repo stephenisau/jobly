@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import JoblyApi from '../JoblyApi';
-import Alert from '../forms/Alert';
+import JoblyApi from '../../JoblyApi';
+import Alert from '../Alert';
 import "./Profile.css";
 
 class Profile extends Component {

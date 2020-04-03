@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
-import UserContext from '../UserContext';
+import UserContext from '../../UserContext';
 import { withRouter } from "react-router";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import JoblyApi from '../JoblyApi';
-import JobCard from "../jobs/JobCard";
+import JoblyApi from '../../JoblyApi';
+import JobCard from ".";
 import { withRouter } from "react-router";
 import "./CompanyProfile.css";
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import JobList from "./JobList";
-import Search from "../forms/Search";
-import JoblyApi from "../JoblyApi";
+import JobList from "../JobList";
+import Search from "../Search";
+import JoblyApi from "../../JoblyApi";
 import "./JoblyDisplay.css"
 
 
