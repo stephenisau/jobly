@@ -3,7 +3,7 @@
 Jobly is a full-stack application based on indeed.com 
 The backend is built with node express and the frontend is built with React using a PostgreSQL database.
 
-Jobly is live [here](https://jobly-app-frontend.herokuapp.com/)
+[Jobly is live here](https://jobly-app-frontend.herokuapp.com/)
 
 # Table of Contents
 - [Screenshots](#screenshots)
