@@ -1,7 +1,7 @@
 import React from "react";
 import {shallow, mount} from 'enzyme';
 import toJson from 'enzyme-to-json';
-import RegisterForm from "../Forms/RegisterForm";
+import RegisterForm from "./index";
 
 
 

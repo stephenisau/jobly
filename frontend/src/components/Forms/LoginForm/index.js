@@ -15,8 +15,8 @@ class LoginForm extends Component {
 
   demoLogin(evt) {
     evt.preventDefault();
-    let username = "patrickstar";
-    let password = "password";
+    let username = "testuser";
+    let password = "secret";
     this.setState({
       username,
       password

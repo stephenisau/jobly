@@ -16,20 +16,9 @@ const mockData = {
 
 beforeAll(() => {
   global.fetch = jest.fn();
-  // window.fetch = jest.fn();
 });
 
 let wrapper;
-
-
-
-beforeEach(() => {
-  // wrapper = shallow(<CompanyDisplay />, { disableLifecycleMethods: true });
-});
-
-afterEach(() => {
-  // wrapper.unmount();
-});
 
 it("renders loading text before making an API call", () => {
   wrapper = shallow(<CompanyDisplay />);
