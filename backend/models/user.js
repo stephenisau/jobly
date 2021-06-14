@@ -51,13 +51,14 @@ class User {
         [data.username]
     );
 
+
     if (duplicateCheck.rows[0]) {
       const err = new Error(
           `There already exists a user with username '${data.username}`);
       err.status = 409;
       throw err;
     }
-
+    console.log("doesnt exists");
     const hashedPassword = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
 
     const result = await db.query(

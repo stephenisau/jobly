@@ -16,7 +16,7 @@ const createToken = require("../helpers/createToken");
 
 /** GET / => {users: [user, ...]} */
 
-router.get("/", authRequired, async function(req, res, next) {
+router.get("/", async function(req, res, next) {
   try {
     const users = await User.findAll();
     return res.json({users});
@@ -48,8 +48,7 @@ router.post("/", async function(req, res, next) {
   try {
     delete req.body._token;
     const validation = validate(req.body, userNewSchema);
-
-    if (!validation.valid) {
+    if (validation.errors.length > 1) {
       return next({
         status: 400,
         message: validation.errors.map(e => e.stack)
@@ -69,15 +68,12 @@ router.post("/", async function(req, res, next) {
 
 router.patch("/:username", ensureCorrectUser, async function(req, res, next) {
   try {
-    console.log('we are in the patch route')
     if ("username" in req.body || "is_admin" in req.body) {
-      console.log('username is in the body')
       return next({status: 400, message: "Not allowed" });
     }
 
     const validation = validate(req.body, userUpdateSchema);
     if (!validation.valid) {
-      console.log('not valid')
       return next({
         status:400,
         message: validation.errors.map(e => e.stack)

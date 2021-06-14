@@ -41,9 +41,7 @@ class Job {
     // Finalize query and return results
 
     let finalQuery = baseQuery + whereExpressions.join(" AND ");
-    console.log("FINAL QUERY: ", finalQuery);
     const jobsRes = await db.query(finalQuery, queryValues);
-    console.log("JOBS", jobsRes);
     return jobsRes.rows;
   }
 

@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 // app imports
 const app = require("../../app");
 const db = require("../../db");
-
 // Database DDL (for tests)
 const DB_TABLES = {
   companies: `
@@ -74,7 +73,6 @@ async function beforeEachHook(TEST_DATA) {
                   VALUES ('test', $1, 'tester', 'mctest', 'test@rithmschool.com', true)`,
       [hashedPassword]
     );
-
     const response = await request(app)
       .post("/login")
       .send({
@@ -122,10 +120,10 @@ async function afterEachHook() {
 
 async function afterAllHook() {
   try {
-    // await db.query("DROP TABLE IF EXISTS applications");
-    // await db.query("DROP TABLE IF EXISTS jobs");
-    // await db.query("DROP TABLE IF EXISTS users");
-    // await db.query("DROP TABLE IF EXISTS companies");
+    await db.query("DROP TABLE IF EXISTS applications");
+    await db.query("DROP TABLE IF EXISTS jobs");
+    await db.query("DROP TABLE IF EXISTS users");
+    await db.query("DROP TABLE IF EXISTS companies");
     await db.end();
   } catch (err) {
     console.error(err);
